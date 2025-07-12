@@ -7,16 +7,16 @@ public class Dog {
     private int age;         // Dog's age in years
     private String size;     // Dog's rough size i.e small/ medium/ large
     private String build;    // Dog's body build e.g. lean/ muscular/ tall
-    private String status;   // Dog's status i.e lost or found
+    private String picture;  // Picture of the dog
 
-    public Dog(String name, int age, String breed, String furColor, String size, String build, String status) {
+    public Dog(String name, int age, String breed, String furColor, String size, String build, String picture) {
         this.name = name;
         this.age = age;
         this.breed = breed;
         this.furColor = furColor;
         this.size = size;
         this.build = build;
-        this.status = status;
+        this.picture = picture;
     }
 
     public String getName() {
@@ -43,9 +43,13 @@ public class Dog {
         return build;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPicture() {
+        return picture;
     }
 
-    
+    public String toString() {
+        return "Name: " + name + "/nAge: " + age + "/nBreed: " + breed + "/nFur Color: " 
+            + furColor + "/nSize: " + size + "/nBuild: " + build + "/nPicture: " + picture;
+    }
+
 }

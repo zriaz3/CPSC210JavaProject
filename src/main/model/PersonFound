@@ -1,0 +1,44 @@
+package model;
+
+public class PersonLost {
+    private String name;     // Poster's name
+    private String status;   // Dog lost 
+    private int phoneNumber; // Poster's phone number
+    private String location; // location where found
+    private String timeFound; // time dog was found
+    private Dog dog; // Poster's dog
+
+    public PersonFound(String name, String status, int phoneNumber, String location, String timeFound, Dog dog) {
+        this.name = name;
+        this.status = status;
+        this.phoneNumber = phoneNumber;
+        this.dog  = dog;
+        this.location = location;
+        this.timeFound = timeFound;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Dog getDog() {
+        return dog;
+    }
+
+    public String location() {
+        return location;
+    }
+
+    public String timeFound() {
+        return timeFound;
+    }
+
+}
