@@ -15,27 +15,58 @@ public class ListPersonLost {
 
     // EFFECTS: add a person to list of people who lost dogs
     public void addPerson(PersonLost person) {
-
+        peopleLost.add(person);
     }
 
     // EFFECTS: remove a person from list of people who lost dogs
     public void removePerson(PersonLost person) {
-
+        peopleLost.remove(person);
     }
 
     public ArrayList<PersonLost> getPeopleLost() {
         return peopleLost;
     }
 
-    // MODIFIES: this
-    // EFFECTS: searches through the list to find potentional matches
-    public ArrayList<PersonLost> searchLostPeople(PersonFound person) {
-        return peopleLost;
+    // EFFECTS: returns true if the 2 people's dogs are similar
+    public Boolean isMatch(PersonFound personF, PersonLost personL) {
+        int score = 0;
+        Dog lost = personL.getDog();
+        Dog found = personF.getDog();
+        if (lost.getName().equalsIgnoreCase(found.getName())) {
+            score++;
+        }
+        if (lost.getAge() == (found.getAge())) {
+            score++;
+        }
+        if (lost.getBreed().equalsIgnoreCase(found.getBreed())) {
+            score++;
+        }
+        if (lost.getFurColor().equalsIgnoreCase(found.getFurColor())) {
+            score++;
+        }
+        if (lost.getSize().equalsIgnoreCase(found.getSize())) {
+            score++;
+        }
+        if (lost.getBuild().equalsIgnoreCase(found.getBuild())) {
+            score++;
+        }
+
+        return score >= 3;
     }
 
-    // EFFECTS: compares found dog to lost dogs and return the person who lost if close match
-    public Boolean isMatch (PersonFound personF, PersonLost personL) {
-        return false;
+    // MODIFIES: this
+    // EFFECTS: searches through the list to find potentional matches
+    public ArrayList<PersonLost> searchLostPeople(PersonFound personF) {
+
+        ArrayList<PersonLost> matches = new ArrayList<>();
+
+        for (PersonLost personL : peopleLost) {
+            if (isMatch(personF, personL)) {
+                matches.add(personL);
+            }
+        }
+
+        return matches;
     }
 
 }

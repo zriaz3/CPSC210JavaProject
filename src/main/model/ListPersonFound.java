@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // Represents a list of all the people who found dogs. 
 public class ListPersonFound {
-
-    private PersonFound personFound;
+    
     private ArrayList<PersonFound> peopleFound;
 
     public ListPersonFound() {
@@ -64,7 +63,7 @@ public class ListPersonFound {
                 matches.add(personF);
             }
         }
-        
+
         return matches;
     }
 }
