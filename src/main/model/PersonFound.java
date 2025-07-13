@@ -1,7 +1,7 @@
 package model;
 
 // Represents a person who found a lost dog, having a name, phone number, location and time dog was found and information about the dog.
-public class PersonLost {
+public class PersonFound {
     private String name;     // Poster's name
     private int phoneNumber; // Poster's phone number
     private String location; // location where found

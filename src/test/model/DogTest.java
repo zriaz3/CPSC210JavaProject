@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DogTest {
 
     private Dog testDog;
-    
+
     @BeforeEach
     void runBefore() {
         testDog = new Dog("Cutie", 7, "Border Collie", "White", "Small", "Lean", "images/Cutie.PNG");
@@ -27,7 +27,8 @@ public class DogTest {
 
     @Test
     public void testToString() {
-        assertEquals(testDog.toString(), 
-        "/nName: Cutie/nAge: 7/nBreed: Border Collie/nFur Color: White/nSize: Small/nBuild: Lean/nPicture: images/Cutie.PNG");
+        assertEquals(testDog.toString(),
+                    "/nName: Cutie/nAge: 7/nBreed: Border Collie/nFur Color: White"
+                        + "/nSize: Small/nBuild: Lean/nPicture: images/Cutie.PNG");
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
-// Represents a person who lost a dog, having a name, phone number, location and time dog was lost and information about the dog.
+// Represents a person who lost a dog, having a name, phone number, location and time dog was lost.
+// includes information about the dog.
 public class PersonLost {
     private String name;     // Poster's name
     private int phoneNumber; // Poster's phone number
