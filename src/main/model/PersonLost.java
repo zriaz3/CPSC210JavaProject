@@ -4,12 +4,12 @@ package model;
 // includes information about the dog.
 public class PersonLost {
     private String name;     // Poster's name
-    private int phoneNumber; // Poster's phone number
+    private String phoneNumber; // Poster's phone number
     private String location; // location where lost
     private String timeLost; // time dog was lost
     private Dog dog;         // Poster's dog
 
-    public PersonLost(String name, int phoneNumber, String location, String timeLost, Dog dog) {
+    public PersonLost(String name, String phoneNumber, String location, String timeLost, Dog dog) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.dog  = dog;
@@ -21,7 +21,7 @@ public class PersonLost {
         return name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 

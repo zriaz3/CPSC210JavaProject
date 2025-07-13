@@ -5,6 +5,7 @@ import java.util.ArrayList;
 // Represents a list of all the people who lost dogs. 
 public class ListPersonLost {
 
+    private PersonLost personLost;
     private ArrayList<PersonLost> peopleLost;
 
     public ListPersonLost() {
@@ -21,17 +22,17 @@ public class ListPersonLost {
 
     }
 
-    public ListPersonLost getPeopleLost() {
+    public ArrayList<PersonLost> getPeopleLost() {
         return peopleLost;
     }
 
     // MODIFIES: this
     // EFFECTS: searches through the list to find potentional matches
-    public ListPersonLost searchLostPeople(PersonFound person) {
+    public ArrayList<PersonLost> searchLostPeople(PersonFound person) {
         return peopleLost;
     }
 
-    // EFFECTS: compares a person who lost a dog to a person who found one and return the person who lost if close match
+    // EFFECTS: compares found dog to lost dogs and return the person who lost if close match
     public PersonLost compareLostToFound(PersonFound person) {
         return personLost;
     }

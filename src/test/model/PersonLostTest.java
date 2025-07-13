@@ -13,13 +13,13 @@ public class PersonLostTest {
     @BeforeEach
     public void runBefore() {
         testDog = new Dog("Cutie", 7, "Border Collie", "White", "Small", "Lean", "images/Cutie.PNG");
-        testPersonLost = new PersonLost("Zain", 123456789, "Vancouver", "7pm July 1st", testDog);
+        testPersonLost = new PersonLost("Zain", "1234567891", "Vancouver", "7pm July 1st", testDog);
     }
 
     @Test
     public void testConstructor() {
         assertEquals("Zain", testPersonLost.getName());
-        assertEquals(123456789, testPersonLost.getPhoneNumber());
+        assertEquals("1234567891", testPersonLost.getPhoneNumber());
         assertEquals("Vancouver", testPersonLost.getLocation());
         assertEquals("7pm July 1st", testPersonLost.getTimeLost());
         assertEquals(testDog, testPersonLost.getDog());

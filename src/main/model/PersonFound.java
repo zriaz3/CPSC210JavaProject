@@ -3,12 +3,12 @@ package model;
 // Represents a person who found a lost dog, having a name, phone number, location and time dog was found and information about the dog.
 public class PersonFound {
     private String name;     // Poster's name
-    private int phoneNumber; // Poster's phone number
+    private String phoneNumber; // Poster's phone number
     private String location; // location where found
     private String timeFound; // time dog was found
     private Dog dog; // Poster's dog
 
-    public PersonFound(String name, int phoneNumber, String location, String timeFound, Dog dog) {
+    public PersonFound(String name, String phoneNumber, String location, String timeFound, Dog dog) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.dog  = dog;
@@ -20,7 +20,7 @@ public class PersonFound {
         return name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
