@@ -1,8 +1,9 @@
 package model;
 
+// Represents a dog that has a name, breed, fur color, age, size, build and picture.
 public class Dog {
-    private String name;     // Dog's name
-    private String breed;    // Dog's breed 
+    private String name;     // Dog's name 
+    private String breed;    // Dog's breed/ most similar breed
     private String furColor; // Dog's most prominent fur color
     private int age;         // Dog's age in years
     private String size;     // Dog's rough size i.e small/ medium/ large
@@ -47,6 +48,7 @@ public class Dog {
         return picture;
     }
 
+    // EFFECTS: return all the information about the dog as a string
     public String toString() {
         return "/nName: " + name + "/nAge: " + age + "/nBreed: " + breed + "/nFur Color: " 
             + furColor + "/nSize: " + size + "/nBuild: " + build + "/nPicture: " + picture;

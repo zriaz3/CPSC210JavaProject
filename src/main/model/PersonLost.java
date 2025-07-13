@@ -33,17 +33,18 @@ public class PersonLost {
         return dog;
     }
 
-    public String location() {
+    public String getLocation() {
         return location;
     }
 
-    public String timeLost() {
+    public String getTimeLost() {
         return timeLost;
     }
 
+    // return all information about person who lost the dog and the dog as a String
     public String toString() {
         return "Poster: " + name + "/nLocation: " + location + "/nTime Lost: " 
             + timeLost + "/nDog Information: " + dog.toString();
     }
-    
+
 }

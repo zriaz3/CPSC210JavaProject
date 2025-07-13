@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+// Represents a list of all the people who lost dogs. 
 public class ListPersonLost {
 
     private ArrayList<PersonLost> peopleLost;
@@ -10,20 +11,29 @@ public class ListPersonLost {
         peopleLost = new ArrayList<>();
     }
 
+    // EFFECTS: add a person to list of people who lost dogs
     public void addPerson(PersonLost person) {
 
     }
 
+    // EFFECTS: remove a person from list of people who lost dogs
     public void removePerson(PersonLost person) {
 
     }
 
-    public ArrayList allPeopleLost() {
+    public ListPersonLost getPeopleLost() {
         return peopleLost;
     }
 
-    public PersonLost searchLostPeople(PersonFound person) {
-        return PersonLost;
+    // MODIFIES: this
+    // EFFECTS: searches through the list to find potentional matches
+    public ListPersonLost searchLostPeople(PersonFound person) {
+        return peopleLost;
+    }
+
+    // EFFECTS: compares a person who lost a dog to a person who found one and return the person who lost if close match
+    public PersonLost compareLostToFound(PersonFound person) {
+        return personLost;
     }
 
 }
