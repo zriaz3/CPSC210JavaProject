@@ -26,7 +26,7 @@ public class LostDogVersion {
     // MODIFIES: lostDogs
     // EFFECTS: allows user to file a report and add to the list of lost dogs
     private void fileLostDogReport() {
-
+        System.out.println("\n");
     }
 
     // EFFECTS: runs the lost dog through all the found dogs in the list for a possible match

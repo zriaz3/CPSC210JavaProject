@@ -39,8 +39,8 @@ public class PersonLost {
 
     // EFFECTS: return all information about person who lost the dog and the dog as a String
     public String toString() {
-        return "Poster: " + name + "/nLocation: " + location + "/nTime Lost: " 
-            + timeLost + "/nDog Information: " + dog.toString();
+        return "Poster: " + name + "\nLocation: " + location + "\nTime Lost: " 
+            + timeLost + "\nDog Information: " + dog.toString();
     }
 
 }

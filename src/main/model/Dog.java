@@ -50,8 +50,8 @@ public class Dog {
 
     // EFFECTS: return all the information about the dog as a string
     public String toString() {
-        return "/nName: " + name + "/nAge: " + age + "/nBreed: " + breed + "/nFur Color: " 
-            + furColor + "/nSize: " + size + "/nBuild: " + build + "/nPicture: " + picture;
+        return "\nName: " + name + "\nAge: " + age + "\nBreed: " + breed + "\nFur Color: " 
+            + furColor + "\nSize: " + size + "\nBuild: " + build + "\nPicture: " + picture;
     }
 
 }

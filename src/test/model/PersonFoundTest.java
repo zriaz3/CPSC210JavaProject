@@ -28,7 +28,7 @@ public class PersonFoundTest {
     @Test
     public void testToString() {
         assertEquals(testPersonFound.toString(), 
-                    "Poster: Zain/nLocation: Vancouver/nTime Found: 7pm July 1st" 
-                        + "/nDog Information: " + testDog.toString());
+                    "Poster: Zain\nLocation: Vancouver\nTime Found: 7pm July 1st" 
+                        + "\nDog Information: " + testDog.toString());
     }
 }
