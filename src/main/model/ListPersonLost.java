@@ -33,8 +33,8 @@ public class ListPersonLost {
     }
 
     // EFFECTS: compares found dog to lost dogs and return the person who lost if close match
-    public PersonLost compareLostToFound(PersonFound person) {
-        return personLost;
+    public Boolean isMatch (PersonFound personF, PersonLost personL) {
+        return false;
     }
 
 }
