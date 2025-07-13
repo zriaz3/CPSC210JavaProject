@@ -41,4 +41,9 @@ public class PersonLost {
         return timeLost;
     }
 
+    public String toString() {
+        return "Poster: " + name + "/nLocation: " + location + "/nTime Lost: " 
+            + timeLost + "/nDog Information: " + dog.toString();
+    }
+    
 }

@@ -1,0 +1,30 @@
+package model;
+
+import java.util.ArrayList;
+
+public class ListPersonFound {
+
+    private ArrayList<PersonFound> peopleFound;
+
+    public ListPersonFound() {
+        peopleFound = new ArrayList<>();
+    }
+
+    public void addPerson(PersonFound person) {
+
+    }
+
+    public void removePerson(PersonFound person) {
+
+    }
+
+    public ArrayList allPeopleFound() {
+        return peopleFound;
+    }
+
+    public PersonFound searchFoundPeople(PersonLost person) {
+        return PersonFound;
+    }
+
+
+}

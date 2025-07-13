@@ -41,4 +41,8 @@ public class PersonLost {
         return timeFound;
     }
 
+    public String toString() {
+        return "Poster: " + name + "/nLocation: " + location + "/nTime Found: " + timeFound + "/nDog Information: " + dog.toString();
+    }
+
 }

@@ -48,7 +48,7 @@ public class Dog {
     }
 
     public String toString() {
-        return "Name: " + name + "/nAge: " + age + "/nBreed: " + breed + "/nFur Color: " 
+        return "/nName: " + name + "/nAge: " + age + "/nBreed: " + breed + "/nFur Color: " 
             + furColor + "/nSize: " + size + "/nBuild: " + build + "/nPicture: " + picture;
     }
 
