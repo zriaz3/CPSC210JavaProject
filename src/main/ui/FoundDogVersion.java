@@ -14,6 +14,9 @@ public class FoundDogVersion {
 
     // EFFECTS: runs the found dog version of the app
     public FoundDogVersion(ListPersonFound foundDogs, ListPersonLost lostDogs) {
+        input = new Scanner(System.in);
+        this.foundDogs = foundDogs;
+        this.lostDogs = lostDogs;
         return;
     }
 }
