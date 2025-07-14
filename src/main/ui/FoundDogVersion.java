@@ -185,12 +185,12 @@ public class FoundDogVersion {
                 System.out.println("Is this your found dog? (Y/N)");
                 confirmDog = input.nextLine();
                 if (confirmDog.equalsIgnoreCase("Y")) {
-                    System.out.print("Poster's name: " + person.getName() + "\nPosters number: "
-                            + person.getPhoneNumber());
+                    System.out.print("Poster's name: " + person.getName() + "\nPosters number: " 
+                                    + person.getPhoneNumber() + "\n");
                     break;
 
                 } else if (confirmDog.equalsIgnoreCase("N")) {
-                    System.out.print("Keep looking or quit? Enter quit or look");
+                    System.out.print("Keep looking or quit? Enter quit or look\n");
                     keepLooking = input.nextLine();
                     if (keepLooking.equalsIgnoreCase("quit")) {
                         return;
@@ -202,6 +202,7 @@ public class FoundDogVersion {
                 }
             }
         }
+        System.out.println("No more found dogs.");
     }
 
 }

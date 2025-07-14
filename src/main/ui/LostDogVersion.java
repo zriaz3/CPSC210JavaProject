@@ -191,7 +191,7 @@ public class LostDogVersion {
                     break;
 
                 } else if (confirmDog.equalsIgnoreCase("N")) {
-                    System.out.print("Keep looking or quit? Enter quit or look");
+                    System.out.print("Keep looking or quit? Enter quit or look\n");
                     keepLooking = input.nextLine();
                     if (keepLooking.equalsIgnoreCase("quit")) {
                         return;
@@ -203,6 +203,7 @@ public class LostDogVersion {
                 }
             }
         }
+        System.out.println("No more found dogs.");
     }
 
 }
