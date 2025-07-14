@@ -1,7 +1,5 @@
 package ui;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +15,6 @@ public class LostDogVersion {
     private Scanner input;
     private ListPersonFound foundDogs;
     private ListPersonLost lostDogs;
-    private Dog lostDog;
     private PersonLost personLost;
 
     // EFFECTS: runs the lost dog version/
@@ -36,7 +33,7 @@ public class LostDogVersion {
                             + "D: Remove report\nE: Quit");
             options = input.nextLine();
             if (options.equalsIgnoreCase("A")) {
-                PersonLost personLost = fileLostDogReport();
+                personLost = fileLostDogReport();
 
             } else if (options.equalsIgnoreCase("B")) {
                 browseFoundDogs(foundDogs);
@@ -81,35 +78,16 @@ public class LostDogVersion {
         }
     }
 
-    private void displayDogs(ArrayList<PersonFound> listPersonFound) {
-        String confirmDog = "";
-        String keepLooking = "";
-        for (PersonFound person : listPersonFound) {
-            person.toString();
-            while (true) {
-                System.out.println("Is this your lost dog? (Y/N)");
-                confirmDog = input.nextLine();
-                if (confirmDog.equalsIgnoreCase("Y")) {
-                    System.out.print("Poster's name: " + person.getName() + "\nPosters number: " + person.getPhoneNumber());
-                    break;
-
-                } else if (confirmDog.equalsIgnoreCase("N")) {
-                    System.out.print("Keep looking or quit? Enter quit or look");
-                    keepLooking = input.nextLine();
-                    if (keepLooking.equalsIgnoreCase("quit")) {
-                        return;
-
-                    } else if (keepLooking.equalsIgnoreCase("look")) {
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
     // EFFECTS: allows user to browse through all the found dogs one by one
     private void browseFoundDogs(ListPersonFound foundDogs) {
+        ArrayList<PersonFound> personFoundDogs = foundDogs.getListPersonFound();
 
+        if (personFoundDogs.isEmpty()) {
+            System.out.print("No found dogs yet.");
+        } else {
+            displayDogs(personFoundDogs);
+
+        }
     }
 
     // EFFECTS gets user integer input
@@ -152,9 +130,7 @@ public class LostDogVersion {
         System.out.println("Your dog's picture: ");
         String picture = input.nextLine();
 
-        lostDog = new Dog(dogName, age, breed, furColor, size, build, picture);
-
-        return lostDog;
+        return new Dog(dogName, age, breed, furColor, size, build, picture);
 
     }
 
@@ -174,9 +150,7 @@ public class LostDogVersion {
         System.out.println("Time you lost your dog: ");
         String timeLost = input.nextLine();
 
-        personLost = new PersonLost(personName, phoneNumber, location, timeLost, dog);
-
-        return personLost;
+        return new PersonLost(personName, phoneNumber, location, timeLost, dog);
     }
 
     // MODIFIES: lostDogs
@@ -203,6 +177,34 @@ public class LostDogVersion {
 
         if (!isRemoved) {
             System.out.println("No report found.");
+        }
+    }
+
+    // EFFECTS: Displays all found dogs one by one
+    private void displayDogs(ArrayList<PersonFound> listPersonFound) {
+        String confirmDog = "";
+        String keepLooking = "";
+        for (PersonFound person : listPersonFound) {
+            System.out.println(person.toString());
+            while (true) {
+                System.out.println("Is this your lost dog? (Y/N)");
+                confirmDog = input.nextLine();
+                if (confirmDog.equalsIgnoreCase("Y")) {
+                    System.out.print("Poster's name: " + person.getName() + "\nPosters number: "
+                            + person.getPhoneNumber());
+                    break;
+
+                } else if (confirmDog.equalsIgnoreCase("N")) {
+                    System.out.print("Keep looking or quit? Enter quit or look");
+                    keepLooking = input.nextLine();
+                    if (keepLooking.equalsIgnoreCase("quit")) {
+                        return;
+
+                    } else if (keepLooking.equalsIgnoreCase("look")) {
+                        break;
+                    }
+                }
+            }
         }
     }
 
