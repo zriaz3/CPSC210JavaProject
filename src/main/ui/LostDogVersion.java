@@ -17,8 +17,7 @@ public class LostDogVersion {
     private ListPersonLost lostDogs;
     private PersonLost personLost;
 
-    // EFFECTS: runs the lost dog version/
-    @SuppressWarnings("methodlength")
+    // EFFECTS: runs the lost dog version
     public LostDogVersion(ListPersonFound foundDogs, ListPersonLost lostDogs, Scanner input) {
         this.foundDogs = foundDogs;
         this.lostDogs = lostDogs;
@@ -27,11 +26,13 @@ public class LostDogVersion {
         String options = "";
 
         while (true) {
-            System.out.println("Choose one of the following options by typing the corresponging letter:");
+            System.out.println("Choose one of the following options by typing the corresponding letter:");
             System.out.println(
                     "A: File report\nB: Browse found dogs\nC: Compare lost dog to all found dogs\n"
                             + "D: Remove report\nE: Quit");
+
             options = input.nextLine();
+
             if (options.equalsIgnoreCase("A")) {
                 personLost = fileLostDogReport();
 
@@ -47,12 +48,8 @@ public class LostDogVersion {
             } else if (options.equalsIgnoreCase("E")) {
                 break;
 
-            } else {
-                System.out.println("Invalid Input");
-
-            }
+            } 
         }
-        return;
     }
 
     // MODIFIES: lostDogs
@@ -64,8 +61,7 @@ public class LostDogVersion {
         return personLost;
     }
 
-    // EFFECTS: runs the lost dog through all the found dogs in the list for a
-    // possible match
+    // EFFECTS: runs the lost dog through all the found dogs in the list for a possible match
     private void checkFoundDogs(PersonLost personLost) {
         if (personLost == null) {
             System.out.println("No report filed, file a report and try again!");
@@ -144,7 +140,7 @@ public class LostDogVersion {
         System.out.println("Phone Number: ");
         String phoneNumber = input.nextLine();
 
-        System.out.println("Location you lost the dog: ");
+        System.out.println("Location you lost your dog: ");
         String location = input.nextLine();
 
         System.out.println("Time you lost your dog: ");
@@ -202,6 +198,7 @@ public class LostDogVersion {
 
                     } else if (keepLooking.equalsIgnoreCase("look")) {
                         break;
+
                     }
                 }
             }
