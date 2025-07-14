@@ -8,7 +8,7 @@ public class Dog {
     private int age;         // Dog's age in years
     private String size;     // Dog's rough size i.e small/ medium/ large
     private String build;    // Dog's body build e.g. lean/ muscular/ tall
-    private String picture;  // Picture of the dog
+    private String picture;  // Picture of the dog as a path to the image
 
     public Dog(String name, int age, String breed, String furColor, String size, String build, String picture) {
         this.name = name;

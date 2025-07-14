@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 // Represents a list of all the people who found dogs. 
 public class ListPersonFound {
@@ -53,7 +52,7 @@ public class ListPersonFound {
         return score >= 3;
     }
 
-     // MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: searches through the list to find potentional matches
     public ArrayList<PersonFound> searchFoundPeople(PersonLost personL) {
         ArrayList<PersonFound> matches = new ArrayList<>();

@@ -14,7 +14,6 @@ public class FindDogApp {
 
     // EFFECTS: runs the dog application
     public FindDogApp() {
-
         input = new Scanner(System.in);
         foundDogs = new ListPersonFound();
         lostDogs = new ListPersonLost();
@@ -43,7 +42,7 @@ public class FindDogApp {
 
         System.out.println("Goodbye");
     }
-    
+
     public static void main(String[] args) {
         new FindDogApp();
     }

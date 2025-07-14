@@ -1,6 +1,7 @@
 package model;
 
-// Represents a person who found a lost dog, having a name, phone number, location and time dog was found and information about the dog.
+// Represents a person who found a lost dog, having a name, phone number, location, time dog was found 
+// Includes information about the dog.
 public class PersonFound {
     private String name;     // Poster's name
     private String phoneNumber; // Poster's phone number
@@ -38,7 +39,8 @@ public class PersonFound {
 
     // EFFECTS: return all information about person who found the dog and the dog as a String
     public String toString() {
-        return "Poster: " + name + "\nLocation: " + location + "\nTime Found: " + timeFound + "\nDog Information: " + dog.toString();
+        return "Poster: " + name + "\nLocation: " + location + "\nTime Found: " 
+                + timeFound + "\nDog Information: " + dog.toString();
     }
 
 }

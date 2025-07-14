@@ -35,19 +35,14 @@ public class LostDogVersion {
 
             if (options.equalsIgnoreCase("A")) {
                 personLost = fileLostDogReport();
-
             } else if (options.equalsIgnoreCase("B")) {
                 browseFoundDogs(foundDogs);
-
             } else if (options.equalsIgnoreCase("C")) {
                 checkFoundDogs(personLost);
-
             } else if (options.equalsIgnoreCase("D")) {
                 removeLostDogReport();
-
             } else if (options.equalsIgnoreCase("E")) {
                 break;
-
             } 
         }
     }
@@ -55,7 +50,6 @@ public class LostDogVersion {
     // MODIFIES: lostDogs
     // EFFECTS: allows user to file a report and add to the list of lost dogs
     private PersonLost fileLostDogReport() {
-
         PersonLost personLost = (personInfo(dogInfo()));
         lostDogs.addPerson(personLost);
         return personLost;
@@ -70,6 +64,7 @@ public class LostDogVersion {
             if (matches.isEmpty()) {
                 System.out.print("No found dogs currently.\n");
             }
+
             displayDogs(matches);
         }
     }
@@ -82,7 +77,6 @@ public class LostDogVersion {
             System.out.print("No found dogs yet.");
         } else {
             displayDogs(personFoundDogs);
-
         }
     }
 
@@ -98,6 +92,7 @@ public class LostDogVersion {
                 System.out.println("Enter valid number.");
             }
         }
+
         return age;
     }
 
@@ -189,20 +184,18 @@ public class LostDogVersion {
                     System.out.print("Poster's name: " + person.getName() + "\nPosters number: "
                             + person.getPhoneNumber());
                     break;
-
                 } else if (confirmDog.equalsIgnoreCase("N")) {
                     System.out.print("Keep looking or quit? Enter quit or look\n");
                     keepLooking = input.nextLine();
                     if (keepLooking.equalsIgnoreCase("quit")) {
                         return;
-
                     } else if (keepLooking.equalsIgnoreCase("look")) {
                         break;
-
                     }
                 }
             }
         }
+        
         System.out.println("No more found dogs.");
     }
 

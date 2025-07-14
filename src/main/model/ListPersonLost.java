@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 // Represents a list of all the people who lost dogs. 
 public class ListPersonLost {
