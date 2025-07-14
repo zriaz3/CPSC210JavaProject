@@ -11,11 +11,13 @@ public class ListPersonFound {
         peopleFound = new ArrayList<>();
     }
 
+    // MODIFIES: this
     // EFFECTS: add a person to list of people who found dogs
     public void addPerson(PersonFound person) {
         peopleFound.add(person);
     }
 
+    // MODIFIES: this
     // EFFECTS: remove a person from list of people who found dogs
     public void removePerson(PersonFound person) {
         peopleFound.remove(person);
@@ -25,7 +27,7 @@ public class ListPersonFound {
         return peopleFound;
     }
 
-    // EFFECTS: returns true if the 2 people's dogs are similar
+    // EFFECTS: returns true if the 2 poster's dogs are similar
     public Boolean isMatch(PersonLost personL, PersonFound personF) {
         int score = 0;
         Dog lost = personL.getDog();

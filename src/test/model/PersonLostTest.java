@@ -31,4 +31,9 @@ public class PersonLostTest {
                     "Poster: Zain\nLocation: Vancouver\nTime Lost: 7pm July 1st" 
                         + "\nDog Information: " + testDog.toString());
     }
+
+    @Test 
+    public void testContactInfo() {
+        assertEquals(testPersonLost.contactInfo(), "Poster name: Zain\nPhone number: 1234567891");
+    }
 }

@@ -20,7 +20,7 @@ public class FindDogApp {
         runDogApp();
     }
 
-    // EFFECTS: choose which version to run based on if person has lost or found a dog
+    // EFFECTS: run lost/found version based on if person has lost or found a dog 
     public void runDogApp() {
         String version = "";
 

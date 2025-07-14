@@ -43,7 +43,7 @@ public class LostDogVersion {
                 removeLostDogReport();
             } else if (options.equalsIgnoreCase("E")) {
                 break;
-            } 
+            }
         }
     }
 
@@ -55,16 +55,13 @@ public class LostDogVersion {
         return personLost;
     }
 
-    // EFFECTS: runs the lost dog through all the found dogs in the list for a possible match
+    // EFFECTS: runs the lost dog through all the found dogs in the list for a
+    // possible match
     private void checkFoundDogs(PersonLost personLost) {
         if (personLost == null) {
             System.out.println("No report filed, file a report and try again!");
         } else {
             ArrayList<PersonFound> matches = foundDogs.searchFoundPeople(personLost);
-            if (matches.isEmpty()) {
-                System.out.print("No found dogs currently.\n");
-            }
-
             displayDogs(matches);
         }
     }
@@ -74,7 +71,7 @@ public class LostDogVersion {
         ArrayList<PersonFound> personFoundDogs = foundDogs.getListPersonFound();
 
         if (personFoundDogs.isEmpty()) {
-            System.out.print("No found dogs yet.");
+            System.out.println("No found dogs currently.");
         } else {
             displayDogs(personFoundDogs);
         }
@@ -96,7 +93,7 @@ public class LostDogVersion {
         return age;
     }
 
-    // EFFECTS: get's information about the lost dog
+    // EFFECTS: gets information about the lost dog
     private Dog dogInfo() {
         System.out.println("Fill out the following information about your lost dog:");
 
@@ -125,7 +122,7 @@ public class LostDogVersion {
 
     }
 
-    // EFFECTS: get's inforation about person who lost the dog
+    // EFFECTS: gets information about person who lost the dog
     private PersonLost personInfo(Dog dog) {
         System.out.println("Fill out the following information about you and when/where the dog was lost: ");
 
@@ -173,30 +170,29 @@ public class LostDogVersion {
 
     // EFFECTS: Displays all found dogs one by one
     private void displayDogs(ArrayList<PersonFound> listPersonFound) {
-        String confirmDog = "";
-        String keepLooking = "";
         for (PersonFound person : listPersonFound) {
             System.out.println(person.toString());
             while (true) {
                 System.out.println("Is this your lost dog? (Y/N)");
-                confirmDog = input.nextLine();
+                String confirmDog = input.nextLine();
                 if (confirmDog.equalsIgnoreCase("Y")) {
-                    System.out.print("Poster's name: " + person.getName() + "\nPosters number: "
-                            + person.getPhoneNumber());
-                    break;
+                    System.out.println(person.contactInfo());
+                    return;
                 } else if (confirmDog.equalsIgnoreCase("N")) {
-                    System.out.print("Keep looking or quit? Enter quit or look\n");
-                    keepLooking = input.nextLine();
-                    if (keepLooking.equalsIgnoreCase("quit")) {
-                        return;
-                    } else if (keepLooking.equalsIgnoreCase("look")) {
-                        break;
+                    while (true) {
+                        System.out.println("Keep looking or quit? Enter quit or look");
+                        String keepLooking = input.nextLine();
+                        if (keepLooking.equalsIgnoreCase("quit")) {
+                            return;
+                        } else if (keepLooking.equalsIgnoreCase("look")) {
+                            break;
+                        }
                     }
+                    break;
                 }
             }
         }
-        
-        System.out.println("No more found dogs.");
-    }
 
+        System.out.println("No more lost dogs.");
+    }
 }

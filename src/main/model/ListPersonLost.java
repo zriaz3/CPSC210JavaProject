@@ -5,18 +5,19 @@ import java.util.ArrayList;
 // Represents a list of all the people who lost dogs. 
 public class ListPersonLost {
 
-    private PersonLost personLost;
     private ArrayList<PersonLost> peopleLost;
 
     public ListPersonLost() {
         peopleLost = new ArrayList<>();
     }
 
+    // MODIFIES: this
     // EFFECTS: add a person to list of people who lost dogs
     public void addPerson(PersonLost person) {
         peopleLost.add(person);
     }
 
+    // MODIFIES: this
     // EFFECTS: remove a person from list of people who lost dogs
     public void removePerson(PersonLost person) {
         peopleLost.remove(person);

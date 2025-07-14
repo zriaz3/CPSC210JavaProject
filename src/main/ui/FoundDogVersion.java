@@ -9,6 +9,7 @@ import model.PersonLost;
 import model.ListPersonLost;
 import model.PersonFound;
 
+// Found dog version of the application
 public class FoundDogVersion {
 
     private Scanner input;
@@ -42,7 +43,7 @@ public class FoundDogVersion {
                 removeFoundDogReport();
             } else if (options.equalsIgnoreCase("E")) {
                 break;
-            } 
+            }
         }
     }
 
@@ -54,15 +55,13 @@ public class FoundDogVersion {
         return personFound;
     }
 
-    // EFFECTS: runs the found dog through all the lost dogs in the list for a possible match
+    // EFFECTS: runs the found dog through all the lost dogs in the list for a
+    // possible match
     private void checkLostDogs(PersonFound personFound) {
         if (personFound == null) {
             System.out.println("No report filed, file a report and try again!");
         } else {
             ArrayList<PersonLost> matches = lostDogs.searchLostPeople(personFound);
-            if (matches.isEmpty()) {
-                System.out.print("No lost dogs currently.\n");
-            }
             displayDogs(matches);
         }
     }
@@ -72,7 +71,7 @@ public class FoundDogVersion {
         ArrayList<PersonLost> personLostDogs = lostDogs.getListPersonLost();
 
         if (personLostDogs.isEmpty()) {
-            System.out.print("No lost dogs yet.");
+            System.out.println("No lost dogs yet.");
         } else {
             displayDogs(personLostDogs);
         }
@@ -95,7 +94,7 @@ public class FoundDogVersion {
         return age;
     }
 
-    // EFFECTS: get's information about the found dog
+    // EFFECTS: gets information about the found dog
     private Dog dogInfo() {
         System.out.println("Fill out all known information about your found dog:");
 
@@ -124,7 +123,7 @@ public class FoundDogVersion {
 
     }
 
-    // EFFECTS: get's inforation about person who found the dog
+    // EFFECTS: gets information about person who found the dog
     private PersonFound personInfo(Dog dog) {
         System.out.println("Fill out the following information about you and when/where the dog was found: ");
 
@@ -172,30 +171,29 @@ public class FoundDogVersion {
 
     // EFFECTS: Displays all found dogs one by one
     private void displayDogs(ArrayList<PersonLost> listPersonLost) {
-        String confirmDog = "";
-        String keepLooking = "";
         for (PersonLost person : listPersonLost) {
             System.out.println(person.toString());
             while (true) {
                 System.out.println("Is this your found dog? (Y/N)");
-                confirmDog = input.nextLine();
+                String confirmDog = input.nextLine();
                 if (confirmDog.equalsIgnoreCase("Y")) {
-                    System.out.print("Poster's name: " + person.getName() + "\nPosters number: " 
-                                    + person.getPhoneNumber() + "\n");
-                    break;
+                    System.out.println(person.contactInfo());
+                    return;
                 } else if (confirmDog.equalsIgnoreCase("N")) {
-                    System.out.print("Keep looking or quit? Enter quit or look\n");
-                    keepLooking = input.nextLine();
-                    if (keepLooking.equalsIgnoreCase("quit")) {
-                        return;
-                    } else if (keepLooking.equalsIgnoreCase("look")) {
-                        break;
-                    }
+                    while (true) {
+                        System.out.println("Keep looking or quit? Enter quit or look");
+                        String keepLooking = input.nextLine();
+                        if (keepLooking.equalsIgnoreCase("quit")) {
+                            return;
+                        } else if (keepLooking.equalsIgnoreCase("look")) {
+                            break;
+                        }
+                    } 
+                    break;
                 }
             }
         }
-        
-        System.out.println("No more found dogs.");
-    }
 
+        System.out.println("No more lost dogs.");
+    }
 }
