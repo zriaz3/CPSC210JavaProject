@@ -31,34 +31,34 @@ public class ListPersonFoundTest {
     @Test
     public void testAddPerson() {
         testPeopleFound.addPerson(testPersonFound);
-        assertTrue(testPeopleFound.getPeopleFound().contains(testPersonFound));
+        assertTrue(testPeopleFound.getListPersonFound().contains(testPersonFound));
     }
 
     @Test
     public void testAddTwoPeople() {
         testPeopleFound.addPerson(testPersonFound);
-        assertTrue(testPeopleFound.getPeopleFound().contains(testPersonFound));
+        assertTrue(testPeopleFound.getListPersonFound().contains(testPersonFound));
         testPeopleFound.addPerson(testPersonFound2);
-        assertTrue(testPeopleFound.getPeopleFound().contains(testPersonFound2));
+        assertTrue(testPeopleFound.getListPersonFound().contains(testPersonFound2));
     }
 
     @Test
     public void testRemovePerson() {
         testPeopleFound.addPerson(testPersonFound);
-        assertTrue(testPeopleFound.getPeopleFound().contains(testPersonFound));
+        assertTrue(testPeopleFound.getListPersonFound().contains(testPersonFound));
         testPeopleFound.removePerson(testPersonFound);
-        assertTrue(testPeopleFound.getPeopleFound().isEmpty());
+        assertTrue(testPeopleFound.getListPersonFound().isEmpty());
     }
 
     @Test
     public void testRemoveTwoPeople() {
         testPeopleFound.addPerson(testPersonFound);
-        assertTrue(testPeopleFound.getPeopleFound().contains(testPersonFound));
+        assertTrue(testPeopleFound.getListPersonFound().contains(testPersonFound));
         testPeopleFound.addPerson(testPersonFound2);
-        assertTrue(testPeopleFound.getPeopleFound().contains(testPersonFound2));
+        assertTrue(testPeopleFound.getListPersonFound().contains(testPersonFound2));
         testPeopleFound.removePerson(testPersonFound);
         testPeopleFound.removePerson(testPersonFound2);
-        assertTrue(testPeopleFound.getPeopleFound().isEmpty());
+        assertTrue(testPeopleFound.getListPersonFound().isEmpty());
     }
 
     @Test

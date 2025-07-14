@@ -9,6 +9,7 @@ import model.Dog;
 import model.ListPersonFound;
 import model.PersonLost;
 import model.ListPersonLost;
+import model.PersonFound;
 
 // Lost dog version of the application
 public class LostDogVersion {
@@ -25,22 +26,23 @@ public class LostDogVersion {
         this.foundDogs = foundDogs;
         this.lostDogs = lostDogs;
         this.input = input;
+        personLost = null;
         String options = "";
+
         while (true) {
             System.out.println("Choose one of the following options by typing the corresponging letter:");
             System.out.println(
                     "A: File report\nB: Browse found dogs\nC: Compare lost dog to all found dogs\n"
-                    + "D: Remove report\nE: Quit");
+                            + "D: Remove report\nE: Quit");
             options = input.nextLine();
             if (options.equalsIgnoreCase("A")) {
                 PersonLost personLost = fileLostDogReport();
-                Dog lostDog = personLost.getDog();
 
             } else if (options.equalsIgnoreCase("B")) {
-                browseFoundDogs();
+                browseFoundDogs(foundDogs);
 
             } else if (options.equalsIgnoreCase("C")) {
-                checkFoundDogs();
+                checkFoundDogs(personLost);
 
             } else if (options.equalsIgnoreCase("D")) {
                 removeLostDogReport();
@@ -65,15 +67,48 @@ public class LostDogVersion {
         return personLost;
     }
 
-
     // EFFECTS: runs the lost dog through all the found dogs in the list for a
     // possible match
-    private void checkFoundDogs() {
+    private void checkFoundDogs(PersonLost personLost) {
+        if (personLost == null) {
+            System.out.println("No report filed, file a report and try again!");
+        } else {
+            ArrayList<PersonFound> matches = foundDogs.searchFoundPeople(personLost);
+            if (matches.isEmpty()) {
+                System.out.print("No found dogs currently.\n");
+            }
+            displayDogs(matches);
+        }
+    }
 
+    private void displayDogs(ArrayList<PersonFound> listPersonFound) {
+        String confirmDog = "";
+        String keepLooking = "";
+        for (PersonFound person : listPersonFound) {
+            person.toString();
+            while (true) {
+                System.out.println("Is this your lost dog? (Y/N)");
+                confirmDog = input.nextLine();
+                if (confirmDog.equalsIgnoreCase("Y")) {
+                    System.out.print("Poster's name: " + person.getName() + "\nPosters number: " + person.getPhoneNumber());
+                    break;
+
+                } else if (confirmDog.equalsIgnoreCase("N")) {
+                    System.out.print("Keep looking or quit? Enter quit or look");
+                    keepLooking = input.nextLine();
+                    if (keepLooking.equalsIgnoreCase("quit")) {
+                        return;
+
+                    } else if (keepLooking.equalsIgnoreCase("look")) {
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     // EFFECTS: allows user to browse through all the found dogs one by one
-    private void browseFoundDogs() {
+    private void browseFoundDogs(ListPersonFound foundDogs) {
 
     }
 
@@ -143,7 +178,7 @@ public class LostDogVersion {
 
         return personLost;
     }
-    
+
     // MODIFIES: lostDogs
     // EFFECTS: checks for report and removes it if verification is successful
     private void removeLostDogReport() {

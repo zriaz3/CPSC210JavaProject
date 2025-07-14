@@ -22,7 +22,7 @@ public class ListPersonFound {
         peopleFound.remove(person);
     }
 
-    public ArrayList<PersonFound> getPeopleFound() {
+    public ArrayList<PersonFound> getListPersonFound() {
         return peopleFound;
     }
 

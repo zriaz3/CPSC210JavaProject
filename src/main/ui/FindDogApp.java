@@ -43,6 +43,7 @@ public class FindDogApp {
 
         System.out.println("Goodbye");
     }
+    
     public static void main(String[] args) {
         new FindDogApp();
     }
