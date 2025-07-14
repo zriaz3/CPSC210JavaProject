@@ -31,34 +31,34 @@ public class ListPersonLostTest {
     @Test
     public void testAddPerson() {
         testPeopleLost.addPerson(testPersonLost);
-        assertTrue(testPeopleLost.getPeopleLost().contains(testPersonLost));
+        assertTrue(testPeopleLost.getListPersonLost().contains(testPersonLost));
     }
 
     @Test
     public void testAddTwoPeople() {
         testPeopleLost.addPerson(testPersonLost);
-        assertTrue(testPeopleLost.getPeopleLost().contains(testPersonLost));
+        assertTrue(testPeopleLost.getListPersonLost().contains(testPersonLost));
         testPeopleLost.addPerson(testPersonLost2);
-        assertTrue(testPeopleLost.getPeopleLost().contains(testPersonLost2));
+        assertTrue(testPeopleLost.getListPersonLost().contains(testPersonLost2));
     }
 
     @Test
     public void testRemovePerson() {
         testPeopleLost.addPerson(testPersonLost);
-        assertTrue(testPeopleLost.getPeopleLost().contains(testPersonLost));
+        assertTrue(testPeopleLost.getListPersonLost().contains(testPersonLost));
         testPeopleLost.removePerson(testPersonLost);
-        assertTrue(testPeopleLost.getPeopleLost().isEmpty());
+        assertTrue(testPeopleLost.getListPersonLost().isEmpty());
     }
 
     @Test
     public void testRemoveTwoPeople() {
         testPeopleLost.addPerson(testPersonLost);
-        assertTrue(testPeopleLost.getPeopleLost().contains(testPersonLost));
+        assertTrue(testPeopleLost.getListPersonLost().contains(testPersonLost));
         testPeopleLost.addPerson(testPersonLost2);
-        assertTrue(testPeopleLost.getPeopleLost().contains(testPersonLost2));
+        assertTrue(testPeopleLost.getListPersonLost().contains(testPersonLost2));
         testPeopleLost.removePerson(testPersonLost);
         testPeopleLost.removePerson(testPersonLost2);
-        assertTrue(testPeopleLost.getPeopleLost().isEmpty());
+        assertTrue(testPeopleLost.getListPersonLost().isEmpty());
     }
 
     @Test

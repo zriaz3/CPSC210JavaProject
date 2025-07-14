@@ -23,7 +23,7 @@ public class ListPersonLost {
         peopleLost.remove(person);
     }
 
-    public ArrayList<PersonLost> getPeopleLost() {
+    public ArrayList<PersonLost> getListPersonLost() {
         return peopleLost;
     }
 

@@ -27,21 +27,21 @@ public class FindDogApp {
 
         while (true) {
             System.out.println("Please select the status of the dog, 'lost' or 'found' or 'quit'");
-            version = input.next();
+            version = input.nextLine();
             System.out.println("you selected: " + version);
 
             if (version.equalsIgnoreCase("quit")) {
                 break;
             } else if (version.equalsIgnoreCase("lost")) {
-                new LostDogVersion(foundDogs, lostDogs);
+                new LostDogVersion(foundDogs, lostDogs, input);
             } else if (version.equalsIgnoreCase("found")) {
-                new FoundDogVersion(foundDogs, lostDogs);
+                new FoundDogVersion(foundDogs, lostDogs, input);
             } else {
                 System.out.println("Invalid input.");
             }
-
         }
-        
+
+        System.out.println("Goodbye");
     }
     public static void main(String[] args) {
         new FindDogApp();
