@@ -1,0 +1,60 @@
+{
+    "currentDog": {
+        "name": "Cutie",
+        "age": 7,
+        "breed": "Border Collie",
+        "furColor": "black",
+        "size": "small",
+        "build": "lean",
+        "picture": ":)"
+    },
+    "lostDogs": [
+        {
+            "name": "Me",
+            "phoneNumber": "123456",
+            "location": "Vancouver",
+            "timeLost": "7pm July 5th",
+            "dog": {
+                "name": "Cutie",
+                "age": 7,
+                "breed": "Border Collie",
+                "furColor": "black",
+                "size": "small",
+                "build": "lean",
+                "picture": ":)"
+            }
+        }
+    ],
+    "foundDogs": [
+        {
+            "name": "NotMe",
+            "phoneNumber": "1234567",
+            "location": "NotVancouver",
+            "timeFound": "8pm July 5th",
+            "dog": {
+                "name": "Cutie",
+                "age": 7,
+                "breed": "Border Collie",
+                "furColor": "black",
+                "size": "small",
+                "build": "lean",
+                "picture": ":)"
+            }
+        },
+        {
+            "name": "NotMe2",
+            "phoneNumber": "12345678",
+            "location": "NotVancouver2",
+            "timeFound": "9pm July 5th",
+            "dog": {
+                "name": "Cutie",
+                "age": 7,
+                "breed": "Border Collie",
+                "furColor": "black",
+                "size": "small",
+                "build": "lean",
+                "picture": ":)"
+            }
+        }
+    ]
+}
