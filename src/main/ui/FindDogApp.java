@@ -13,6 +13,9 @@ import persistence.JsonWriter;
 
 // Dog application 
 public class FindDogApp {
+    private static final int DOG_INDEX = 0;
+    private static final int LOST_INDEX = 1;
+    private static final int FOUND_INDEX = 2;
     private static final String JSON_STORE = "./data/findDogApp.json";
     private Scanner input;
     private ListPersonFound foundDogs;
@@ -74,9 +77,9 @@ public class FindDogApp {
     private void loadData() {
         try {
             Object[] data = jsonReader.read();
-            currentDog.setDog((Dog) data[0]);
-            lostDogs = (ListPersonLost) data[1];
-            foundDogs = (ListPersonFound) data[2];
+            currentDog.setDog((Dog) data[DOG_INDEX]);
+            lostDogs = (ListPersonLost) data[LOST_INDEX];
+            foundDogs = (ListPersonFound) data[FOUND_INDEX];
             System.out.println("Data loaded from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
