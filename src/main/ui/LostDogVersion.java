@@ -1,7 +1,11 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import model.Dog;
 import model.ListPersonFound;
@@ -11,17 +15,23 @@ import model.PersonFound;
 
 // Lost dog version of the application
 public class LostDogVersion {
-
+    private static final String JSON_STORE = "./data/findDogApp.json";
     private Scanner input;
     private ListPersonFound foundDogs;
     private ListPersonLost lostDogs;
     private PersonLost personLost;
+    private Dog currentDog;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the lost dog version
-    public LostDogVersion(ListPersonFound foundDogs, ListPersonLost lostDogs, Scanner input) {
+    public LostDogVersion(ListPersonFound foundDogs, ListPersonLost lostDogs, Scanner input,
+                          JsonWriter jsonWriter, JsonReader jsonReader) {
         this.foundDogs = foundDogs;
         this.lostDogs = lostDogs;
         this.input = input;
+        this.jsonWriter = jsonWriter;
+        this.jsonReader = jsonReader;
         personLost = null;
         String options = "";
 
@@ -38,7 +48,7 @@ public class LostDogVersion {
             } else if (options.equalsIgnoreCase("B")) {
                 browseFoundDogs(foundDogs);
             } else if (options.equalsIgnoreCase("C")) {
-                checkFoundDogs(personLost);
+                checkFoundDogs(currentDog);
             } else if (options.equalsIgnoreCase("D")) {
                 removeLostDogReport();
             } else if (options.equalsIgnoreCase("E")) {
@@ -54,18 +64,20 @@ public class LostDogVersion {
     // MODIFIES: lostDogs
     // EFFECTS: allows user to file a report and add to the list of lost dogs
     private PersonLost fileLostDogReport() {
-        PersonLost personLost = (personInfo(dogInfo()));
+        Dog dog = dogInfo();
+        this.currentDog = dog;
+        PersonLost personLost = personInfo(dog);
         lostDogs.addPerson(personLost);
         return personLost;
     }
 
     // EFFECTS: runs the lost dog through all the found dogs in the list for a
     // possible match
-    private void checkFoundDogs(PersonLost personLost) {
-        if (personLost == null) {
+    private void checkFoundDogs(Dog currentDog) {
+        if (currentDog == null) {
             System.out.println("No report filed, file a report and try again!");
         } else {
-            ArrayList<PersonFound> matches = foundDogs.searchFoundPeople(personLost);
+            ArrayList<PersonFound> matches = foundDogs.searchFoundPeople(currentDog);
             displayDogs(matches);
         }
     }
@@ -201,10 +213,29 @@ public class LostDogVersion {
     }
 
     private void saveData() {
-
+        try {
+            jsonWriter.open();
+            jsonWriter.write(currentDog, lostDogs, foundDogs);
+            jsonWriter.close();
+            System.out.println("Data saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
     }
 
     private void loadData() {
-        
+        try {
+            Object[] data = jsonReader.read();
+            currentDog = (Dog) data[0];
+            lostDogs = (ListPersonLost) data[1];
+            foundDogs = (ListPersonFound) data[2];
+            System.out.println("Data loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    public Dog getCurrentDog() {
+        return currentDog;
     }
 }

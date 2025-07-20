@@ -63,20 +63,20 @@ public class ListPersonLostTest {
 
     @Test
     public void testIsMatch() {
-        assertFalse(testPeopleLost.isMatch(testPersonFound, testPersonLost)); // testDog3 and testDog
-        assertTrue(testPeopleLost.isMatch(testPersonFound, testPersonLost2)); // testDog and testDog
-        assertTrue(testPeopleLost.isMatch(testPersonFound2, testPersonLost)); // testDog2 and testDog3
-        assertFalse(testPeopleLost.isMatch(testPersonFound2, testPersonLost2)); // testDog and testDog2
+        assertFalse(testPeopleLost.isMatch(testDog, testPersonLost)); // testDog3 and testDog
+        assertTrue(testPeopleLost.isMatch(testDog, testPersonLost2)); // testDog and testDog
+        assertTrue(testPeopleLost.isMatch(testDog2, testPersonLost)); // testDog2 and testDog3
+        assertFalse(testPeopleLost.isMatch(testDog2, testPersonLost2)); // testDog and testDog2
     }
 
     @Test
     public void testSearchLostPeople() {
         testPeopleLost.addPerson(testPersonLost);
         testPeopleLost.addPerson(testPersonLost2);
-        assertTrue(testPeopleLost.searchLostPeople(testPersonFound).contains(testPersonLost2));
-        assertFalse(testPeopleLost.searchLostPeople(testPersonFound).contains(testPersonLost));
-        assertFalse(testPeopleLost.searchLostPeople(testPersonFound2).contains(testPersonLost2));
-        assertTrue(testPeopleLost.searchLostPeople(testPersonFound2).contains(testPersonLost));
+        assertTrue(testPeopleLost.searchLostPeople(testDog).contains(testPersonLost2));
+        assertFalse(testPeopleLost.searchLostPeople(testDog).contains(testPersonLost));
+        assertFalse(testPeopleLost.searchLostPeople(testDog2).contains(testPersonLost2));
+        assertTrue(testPeopleLost.searchLostPeople(testDog2).contains(testPersonLost));
     }
 
 }

@@ -33,10 +33,10 @@ public class ListPersonLost {
     }
 
     // EFFECTS: returns true if the 2 people's dogs are similar
-    public Boolean isMatch(PersonFound personF, PersonLost personL) {
+    public Boolean isMatch(Dog dog, PersonLost personL) {
         int score = 0;
         Dog lost = personL.getDog();
-        Dog found = personF.getDog();
+        Dog found = dog;
         if (lost.getName().equalsIgnoreCase(found.getName())) {
             score++;
         }
@@ -61,12 +61,12 @@ public class ListPersonLost {
 
     // MODIFIES: this
     // EFFECTS: searches through the list to find potentional matches
-    public ArrayList<PersonLost> searchLostPeople(PersonFound personF) {
+    public ArrayList<PersonLost> searchLostPeople(Dog dog) {
 
         ArrayList<PersonLost> matches = new ArrayList<>();
 
         for (PersonLost personL : peopleLost) {
-            if (isMatch(personF, personL)) {
+            if (isMatch(dog, personL)) {
                 matches.add(personL);
             }
         }
