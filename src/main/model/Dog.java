@@ -10,6 +10,7 @@ public class Dog {
     private String build;    // Dog's body build e.g. lean/ muscular/ tall
     private String picture;  // Picture of the dog as a path to the image
 
+    // EFFECTS: Creates a dog with a name, age, breed, furColor, size, build, picture
     public Dog(String name, int age, String breed, String furColor, String size, String build, String picture) {
         this.name = name;
         this.age = age;

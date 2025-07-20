@@ -13,3 +13,5 @@ The intended target audience is the general public. Anyone who has lost a dog ca
 - As a user, I want to be able to remove my lost or found dog entry after the dog or owner is found. 
 - As a user, I want to be able to compare my lost or found dog to entries from other users in my area. 
 - As a user, I want to be able to claim a dog if it is my lost dog and get the contact of the user who posted it. 
+- As a user, I want to be able to save a record of all the lost or found dogs and save one specific dog as the current dog to search.
+- As a user, I want to be able to load a record of all the lost or found dogs and load my last saved specific dog.

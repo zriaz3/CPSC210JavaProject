@@ -9,6 +9,7 @@ public class PersonLost {
     private String timeLost;    // time dog was lost
     private Dog dog;            // Poster's dog
 
+    // EFFECTS: creates a person who lost a dog with a name, number, location found, time found and dog info
     public PersonLost(String name, String phoneNumber, String location, String timeLost, Dog dog) {
         this.name = name;
         this.phoneNumber = phoneNumber;

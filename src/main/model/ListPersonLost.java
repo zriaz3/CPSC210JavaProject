@@ -7,6 +7,7 @@ public class ListPersonLost {
 
     private ArrayList<PersonLost> peopleLost;
 
+    // EFFECTS: creates an empty list of personLost
     public ListPersonLost() {
         peopleLost = new ArrayList<>();
     }
