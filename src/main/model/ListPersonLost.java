@@ -2,6 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
 // Represents a list of all the people who lost dogs. 
 public class ListPersonLost {
 
@@ -68,6 +72,18 @@ public class ListPersonLost {
         }
 
         return matches;
+    }
+
+    // EFFECTS: returns PersonLost in the listPersonLost as a JSON array
+    // Modeled after sample application provided
+    public JSONArray toJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (PersonLost p : peopleLost) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

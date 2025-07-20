@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // Represents a list of all the people who found dogs. 
 public class ListPersonFound {
     
@@ -67,5 +70,17 @@ public class ListPersonFound {
         }
 
         return matches;
+    }
+
+    // EFFECTS: returns PersonFound in the listPersonFound as a JSON array
+    // Modeled after sample application provided
+    public JSONArray toJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (PersonFound p : peopleFound) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
     }
 }

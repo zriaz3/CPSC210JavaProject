@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 // Represents a dog that has a name, breed, fur color, age, size, build and picture.
-public class Dog {
+public class Dog implements Writable {
     private String name;     // Dog's name 
     private String breed;    // Dog's breed/ most similar breed
     private String furColor; // Dog's most prominent fur color
@@ -53,6 +57,21 @@ public class Dog {
     public String toString() {
         return "\nName: " + name + "\nAge: " + age + "\nBreed: " + breed + "\nFur Color: " 
             + furColor + "\nSize: " + size + "\nBuild: " + build + "\nPicture: " + picture;
+    }
+
+    // EFFECTS: returns Dog as a JSON
+    // Modeled after sample application provided
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("age", age);
+        json.put("breed", breed);
+        json.put("furColor", furColor);
+        json.put("size", size);
+        json.put("build", build);
+        json.put("picture", picture);
+        return json;
     }
 
 }

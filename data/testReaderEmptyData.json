@@ -1,5 +1,5 @@
 {
+    "currentDog": null,
     "listPersonLost": [],
-    "listPersonFound": [],
-    "currentDog": null
+    "listPersonFound": []
 }

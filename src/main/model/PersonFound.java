@@ -1,8 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 // Represents a person who found a lost dog, having a name, phone number, location, time dog was found 
 // Includes information about the dog.
-public class PersonFound {
+public class PersonFound implements Writable {
     private String name;        // Poster's name
     private String phoneNumber; // Poster's phone number
     private String location;    // location where found
@@ -47,6 +51,19 @@ public class PersonFound {
     // EFFECTS: return contact info of poster as a String
     public String contactInfo() {
         return "Poster name: " + name + "\nPhone number: " + phoneNumber;
+    }
+
+    // EFFECTS: returns PersonFound as a JSON
+    // Modeled after sample application provided
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("phoneNumber", phoneNumber);
+        json.put("location", location);
+        json.put("timeFound", timeFound);
+        json.put("dog", dog.toJson());
+        return json;
     }
 
 }

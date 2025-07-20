@@ -12,6 +12,7 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+// Modeled after sample application provided
 class JsonReaderTest extends JsonTest {
     private static final int DOG_INDEX = 0;
     private static final int LOST_INDEX = 1;

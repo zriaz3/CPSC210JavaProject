@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.*;
 
+// Modeled after sample application provided
 class JsonWriterTest extends JsonTest {
     private static final int DOG_INDEX = 0;
     private static final int LOST_INDEX = 1;
@@ -26,8 +27,8 @@ class JsonWriterTest extends JsonTest {
         }
     }
 
-    @Test 
-    void testWriterEmptyData(){
+    @Test
+    void testWriterEmptyData() {
         try {
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyData.json");
             writer.open();
@@ -48,6 +49,7 @@ class JsonWriterTest extends JsonTest {
         }
     }
 
+    @SuppressWarnings("methodlength")
     @Test
     void testWriterGeneral() {
         try {
@@ -91,4 +93,3 @@ class JsonWriterTest extends JsonTest {
         }
     }
 }
-
