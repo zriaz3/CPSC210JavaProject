@@ -32,7 +32,7 @@ public class FindDogApp {
         runDogApp();
     }
 
-    // EFFECTS: run lost/found version based on if person has lost or found a dog
+    // EFFECTS: run lost/found version based on if person has lost or found a dog or save/load data
     public void runDogApp() {
         while (true) {
             System.out.println("Please select the status of the dog, 'lost', 'found' or 'quit' or 'load', 'save' data");
@@ -57,6 +57,7 @@ public class FindDogApp {
         System.out.println("Goodbye");
     }
 
+    // EFFECTS: saves all current DogApp data to file
     private void saveData() {
         try {
             jsonWriter.open();
@@ -68,6 +69,8 @@ public class FindDogApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads DogApp data from file
     private void loadData() {
         try {
             Object[] data = jsonReader.read();

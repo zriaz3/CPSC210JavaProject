@@ -46,7 +46,7 @@ public class LostDogVersion {
         }
     }
 
-    // MODIFIES: lostDogs
+    // MODIFIES: lostDogs, currentDog
     // EFFECTS: allows user to file a report and add to the list of lost dogs
     private void fileLostDogReport() {
         Dog dog = dogInfo();
@@ -55,8 +55,7 @@ public class LostDogVersion {
         lostDogs.addPerson(personLost);
     }
 
-    // EFFECTS: runs the lost dog through all the found dogs in the list for a
-    // possible match
+    // EFFECTS: runs the current dog through all the found dogs in the list for a possible match
     private void checkFoundDogs() {
         if (currentDog.getDog() == null) {
             System.out.println("No report filed, file a report and try again!");

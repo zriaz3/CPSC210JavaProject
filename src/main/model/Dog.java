@@ -73,5 +73,4 @@ public class Dog implements Writable {
         json.put("picture", picture);
         return json;
     }
-
 }

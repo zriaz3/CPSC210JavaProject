@@ -65,5 +65,4 @@ public class PersonFound implements Writable {
         json.put("dog", dog.toJson());
         return json;
     }
-
 }

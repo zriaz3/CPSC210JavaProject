@@ -6,7 +6,6 @@ import org.json.JSONArray;
 
 // Represents a list of all the people who found dogs. 
 public class ListPersonFound {
-    
     private ArrayList<PersonFound> peopleFound;
 
     // EFFECTS: creates an empty list of personFound
@@ -30,7 +29,7 @@ public class ListPersonFound {
         return peopleFound;
     }
 
-    // EFFECTS: returns true if the 2 poster's dogs are similar
+    // EFFECTS: returns true if given dog is similar to personFound's dog
     public Boolean isMatch(Dog dog, PersonFound personF) {
         int score = 0;
         Dog lost = dog;

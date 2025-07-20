@@ -67,5 +67,4 @@ public class PersonLost implements Writable {
         json.put("dog", dog.toJson());
         return json;
     }
-
 }
