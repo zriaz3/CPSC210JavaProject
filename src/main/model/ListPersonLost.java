@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 
 // Represents a list of all the people who lost dogs. 

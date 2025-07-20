@@ -1,7 +1,10 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
+import model.CurrentDog;
 import model.Dog;
 import model.ListPersonFound;
 import model.ListPersonLost;
@@ -14,6 +17,7 @@ public class FindDogApp {
     private Scanner input;
     private ListPersonFound foundDogs;
     private ListPersonLost lostDogs;
+    private CurrentDog currentDog;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
@@ -24,28 +28,56 @@ public class FindDogApp {
         lostDogs = new ListPersonLost();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+        currentDog = new CurrentDog(null);
         runDogApp();
     }
 
-    // EFFECTS: run lost/found version based on if person has lost or found a dog 
+    // EFFECTS: run lost/found version based on if person has lost or found a dog
     public void runDogApp() {
         while (true) {
-            System.out.println("Please select the status of the dog, 'lost' or 'found' or 'quit'");
+            System.out.println("Please select the status of the dog, 'lost', 'found' or 'quit' or 'load', 'save' data");
             String version = input.nextLine();
             System.out.println("you selected: " + version);
 
             if (version.equalsIgnoreCase("quit")) {
                 break;
             } else if (version.equalsIgnoreCase("lost")) {
-                new LostDogVersion(foundDogs, lostDogs, input, jsonWriter, jsonReader);
+                new LostDogVersion(currentDog, foundDogs, lostDogs, input);
             } else if (version.equalsIgnoreCase("found")) {
-                new FoundDogVersion(foundDogs, lostDogs, input, jsonWriter, jsonReader);
+                new FoundDogVersion(currentDog, foundDogs, lostDogs, input);
+            } else if (version.equalsIgnoreCase("load")) {
+                loadData();
+            } else if (version.equalsIgnoreCase("save")) {
+                saveData();
             } else {
                 System.out.println("Invalid input.");
             }
         }
 
         System.out.println("Goodbye");
+    }
+
+    private void saveData() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(currentDog.getDog(), lostDogs, foundDogs);
+            jsonWriter.close();
+            System.out.println("Data saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    private void loadData() {
+        try {
+            Object[] data = jsonReader.read();
+            currentDog.setDog((Dog) data[0]);
+            lostDogs = (ListPersonLost) data[1];
+            foundDogs = (ListPersonFound) data[2];
+            System.out.println("Data loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     public static void main(String[] args) {

@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 public class ListPersonLostTest {
 
-    private PersonFound testPersonFound;
-    private PersonFound testPersonFound2;
     private Dog testDog;
     private Dog testDog2;
     private Dog testDog3;
@@ -21,8 +19,6 @@ public class ListPersonLostTest {
         testDog = new Dog("Cutie", 7, "Border Collie", "White", "Small", "Lean", "images/Cutie.PNG");
         testDog2 = new Dog("Gru", 5, "Street", "Black", "Big", "Muscular", "images/Gru.PNG");
         testDog3 = new Dog("Brownie", 5, "Street", "Black", "Big", "Lean", "images/Brownie.PNG");
-        testPersonFound = new PersonFound("Zain", "1234567891", "Vancouver", "7pm July 1st", testDog);
-        testPersonFound2 = new PersonFound("Bee", "1234567541", "Burnaby", "3pm July 10th", testDog2);
         testPersonLost = new PersonLost("Max", "5656737383", "Burnaby", "2pm July 11th", testDog3);
         testPersonLost2 = new PersonLost("Me", "5657838822", "Vancouver", "10pm July 1st", testDog);
         testPeopleLost = new ListPersonLost();
