@@ -29,7 +29,7 @@ public class LostDogVersion {
             System.out.println("Choose one of the following options by typing the corresponding letter:");
             System.out.println(
                     "A: File report\nB: Browse found dogs\nC: Compare lost dog to all found dogs\n"
-                            + "D: Remove report\nE: Quit");
+                            + "D: Remove report\nE: Save data\nF: Load data\nG: Quit");
 
             options = input.nextLine();
 
@@ -42,6 +42,10 @@ public class LostDogVersion {
             } else if (options.equalsIgnoreCase("D")) {
                 removeLostDogReport();
             } else if (options.equalsIgnoreCase("E")) {
+                saveData();
+            } else if (options.equalsIgnoreCase("F")) {
+                loadData();
+            } else if (options.equalsIgnoreCase("G")) {
                 break;
             }
         }
@@ -194,5 +198,13 @@ public class LostDogVersion {
         }
 
         System.out.println("No more lost dogs.");
+    }
+
+    private void saveData() {
+
+    }
+
+    private void loadData() {
+        
     }
 }
