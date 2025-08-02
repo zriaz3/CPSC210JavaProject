@@ -37,28 +37,23 @@ public class FindDogAppUI extends JFrame {
     // EFFECTS: initializes and runs the Find Dog app
     public FindDogAppUI() {
         super("Find Dog App");
-        initializeFields();
-        initializeGraphics();
-    }
-
-    // EFFECTS: initialze all required fields to their empty states
-    private void initializeFields() {
+        
         foundDogs = new ListPersonFound();
         lostDogs = new ListPersonLost();
         currentDog = new CurrentDog(null);
-
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+
+        initializeGraphics();
     }
 
-    // EFFECTS: sets up the layout of the App
+    // EFFECTS: sets up the layout of the App and adds buttons
     private void initializeGraphics() {
         setLayout(new BorderLayout());
         setSize(WIDTH, HEIGHT);
         addButtons();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        pack();
         setVisible(true);
     }
 
@@ -69,7 +64,7 @@ public class FindDogAppUI extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 2));
 
-        buttonPanel.add(new JButton(new LostDogAction()));
+        buttonPanel.add(new JButton());
         buttonPanel.add(new JButton(new FoundDogAction()));
         buttonPanel.add(new JButton(new SaveAction()));
         buttonPanel.add(new JButton(new LoadAction()));
@@ -78,17 +73,17 @@ public class FindDogAppUI extends JFrame {
 
     }
 
-    private class LostDogAction extends AbstractAction {
-        LostDogAction() {
-            super("Lost Dog Mode");
-        }
+    // private class LostDogAction extends AbstractAction {
+    //     LostDogAction() {
+    //         super("Lost Dog Mode");
+    //     }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setVisible(false);
-            new LostDogUI(currentDog, foundDogs, lostDogs, FindDogAppUI.this);
-        }
-    }
+    //     @Override
+    //     public void actionPerformed(ActionEvent e) {
+    //         setVisible(false);
+    //         new LostDogUI(currentDog, foundDogs, lostDogs, FindDogAppUI.this);
+    //     }
+    // }
 
     private class FoundDogAction extends AbstractAction {
         FoundDogAction() {
