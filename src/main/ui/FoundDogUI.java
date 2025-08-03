@@ -25,9 +25,9 @@ public class FoundDogUI extends JFrame {
     private FindDogAppUI findDogAppUI;
     private JPanel display;
 
-    // modelled after drawing editor
-    // Github link:
-    // https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete
+    // modelled after DrawingEditor
+    // https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete\
+    // MODIFIES: this
     // EFFECTS: runs the found dog GUI version of the app
     public FoundDogUI(CurrentDog currentDog, ListPersonFound foundDogs,
             ListPersonLost lostDogs, FindDogAppUI findDogAppUI) {
@@ -39,6 +39,7 @@ public class FoundDogUI extends JFrame {
         initializeGraphics();
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up the layout of the App and add buttons/display
     private void initializeGraphics() {
         setLayout(new BorderLayout());
@@ -50,6 +51,8 @@ public class FoundDogUI extends JFrame {
         setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds all required buttons
     private void addButtons() {
         JPanel buttonPanel = new JPanel(new GridLayout(3, 3));
         buttonPanel.add(new JButton(new ReportFoundDogAction()));
@@ -61,7 +64,9 @@ public class FoundDogUI extends JFrame {
 
         add(buttonPanel, BorderLayout.NORTH);
     }
-
+    
+    // MODIFIES: this
+    // EFFECTS: initialize display
     private void addDisplay() {
         display = new JPanel();
         display.setLayout(new BoxLayout(display, BoxLayout.Y_AXIS));
@@ -69,6 +74,8 @@ public class FoundDogUI extends JFrame {
         add(scroll, BorderLayout.CENTER);
     }
 
+    // MODIFIES: this
+    // EFFECTS: display given Dog information
     private void showDog(Dog dog, String message) {
         JPanel dogPanel = new JPanel();
         dogPanel.setLayout(new BoxLayout(dogPanel, BoxLayout.Y_AXIS));
@@ -84,7 +91,9 @@ public class FoundDogUI extends JFrame {
         display.add(dogPanel);
     }
 
-    // https://stackoverflow.com/questions/66502178/how-to-add-spacing-between-jpanel-and-jframes-contentpane
+    // Reference: https://stackoverflow.com/questions/66502178/how-to-add-spacing-between-jpanel-and-jframes-contentpane
+    // MODIFIES: this
+    // EFFECTS: displays all info about person and dog
     private void showAllInfo(PersonLost person) {
         Dog dog = person.getDog();
         JPanel dogPanel = new JPanel();
@@ -104,7 +113,9 @@ public class FoundDogUI extends JFrame {
         display.add(dogPanel);
     }
 
-    // https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
+    // Reference: https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
+    // MODIFIES: dogPanel
+    // EFFECTS: adds image to dogPanel if available
     private void getPicture(JPanel dogPanel, Dog dog) {
         if (dog.getPicture() != null && !dog.getPicture().isEmpty()) {
             try {
@@ -118,11 +129,17 @@ public class FoundDogUI extends JFrame {
         }
     }
 
+    // Handles reporting of a found dog
     private class ReportFoundDogAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         ReportFoundDogAction() {
             super("Report Found Dog");
         }
 
+        // Reference: https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
+        // MODIFIES: this, currentDog, foundDogs
+        // EFFECTS: gets found dog info, adds to list of found, displays found dog
         @Override
         public void actionPerformed(ActionEvent e) {
             Dog dog = dogInfo();
@@ -135,9 +152,10 @@ public class FoundDogUI extends JFrame {
             display.revalidate();
             display.repaint();
         }
+        
 
+        // EFFECTS: get info about person
         private PersonFound personInfo(Dog dog) {
-
             String personName = JOptionPane.showInputDialog("Your name: ");
             String phoneNumber = JOptionPane.showInputDialog("Your number: ");
             String location = JOptionPane.showInputDialog("Location dog was found: ");
@@ -146,8 +164,8 @@ public class FoundDogUI extends JFrame {
             return new PersonFound(personName, phoneNumber, location, timeLost, dog);
         }
 
+        // EFFECTS: get info about dog
         private Dog dogInfo() {
-
             String dogName = JOptionPane.showInputDialog("Dog's name: ");
             int age = userIntegerInput();
             String breed = JOptionPane.showInputDialog("Dog's breed: ");
@@ -158,7 +176,8 @@ public class FoundDogUI extends JFrame {
 
             return new Dog(dogName, age, breed, color, size, build, picture);
         }
-
+        
+        // EFFECTS: gets user integer input
         private int userIntegerInput() {
             int age = 0;
 
@@ -175,11 +194,16 @@ public class FoundDogUI extends JFrame {
         }
     }
 
+    // Handles viewing all lost dogs
     private class ViewLostDogsAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         ViewLostDogsAction() {
             super("View Lost Dogs");
         }
 
+        // MODIFIES: this
+        // EFFECTS: displays all lost dogs if present
         @Override
         public void actionPerformed(ActionEvent e) {
             ArrayList<PersonLost> personLostDogs = lostDogs.getListPersonLost();
@@ -195,6 +219,8 @@ public class FoundDogUI extends JFrame {
             }
         }
 
+        // MODIFIES: this
+        // EFFECTS: displays all lost dogs together
         private void displayDogs(ArrayList<PersonLost> listPersonLost) {
             if (listPersonLost.isEmpty()) {
                 JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs reported yet.");
@@ -206,11 +232,16 @@ public class FoundDogUI extends JFrame {
         }
     }
 
+    // Handles comparing found dog to lost dogs
     private class CheckLostDogsAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         CheckLostDogsAction() {
             super("Check Lost Dogs For Your Found Dog");
         }
 
+        // MODIFIES: this
+        // EFFECTS: checks if any matches and displays them
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -226,6 +257,8 @@ public class FoundDogUI extends JFrame {
             }
         }
 
+        // MODIFIES: this
+        // EFFECTS: displays all lost dogs
         private void displayDogs(ArrayList<PersonLost> listPersonLost) {
             if (listPersonLost.isEmpty()) {
                 JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs reported yet.");
@@ -237,11 +270,16 @@ public class FoundDogUI extends JFrame {
         }
     }
 
+    // Handles removing a found dog report
     private class RemoveFoundDogAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         RemoveFoundDogAction() {
             super("Remove Found Dog Report");
         }
 
+        // MODIFIES: this, foundDogs
+        // EFFECTS: Remove found dog report if verification sucessful
         @Override
         public void actionPerformed(ActionEvent e) {
             String name = JOptionPane
@@ -266,11 +304,16 @@ public class FoundDogUI extends JFrame {
         }
     }
 
+    // Handles checking current dog
     private class CheckCurrentDogAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         CheckCurrentDogAction() {
             super("View Current Dog");
         }
 
+        // MODIFIES: this
+        // EFFECTS: displays current dog if present
         @Override
         public void actionPerformed(ActionEvent e) {
             if (currentDog.getDog() == null) {
@@ -284,11 +327,16 @@ public class FoundDogUI extends JFrame {
         }
     }
 
+    // Handles returning to main menu 
     private class ReturnAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         ReturnAction() {
             super("Return to main menu");
         }
 
+        // MODIFIES: this
+        // EFFECTS: closes FoundDogUI and goes back to FindDogAppUI
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();

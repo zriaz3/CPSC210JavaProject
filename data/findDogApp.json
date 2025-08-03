@@ -1,5 +1,75 @@
 {
-    "listPersonFound": [],
-    "currentDog": null,
-    "listPersonLost": []
+    "listPersonFound": [
+        {
+            "phoneNumber": "1",
+            "name": "1",
+            "timeFound": "1",
+            "location": "1",
+            "dog": {
+                "size": "1",
+                "build": "1",
+                "name": "found1",
+                "furColor": "1",
+                "age": 1,
+                "breed": "1",
+                "picture": "Images/Gru.PNG"
+            }
+        },
+        {
+            "phoneNumber": "2",
+            "name": "2",
+            "timeFound": "2",
+            "location": "2",
+            "dog": {
+                "size": "2",
+                "build": "2",
+                "name": "found2",
+                "furColor": "2",
+                "age": 2,
+                "breed": "2",
+                "picture": "Images/Brownie.PNG"
+            }
+        }
+    ],
+    "currentDog": {
+        "size": "2",
+        "build": "2",
+        "name": "found2",
+        "furColor": "2",
+        "age": 2,
+        "breed": "2",
+        "picture": "Images/Brownie.PNG"
+    },
+    "listPersonLost": [
+        {
+            "phoneNumber": "1",
+            "name": "1",
+            "location": "1",
+            "timeLost": "1",
+            "dog": {
+                "size": "1",
+                "build": "1",
+                "name": "Lost1",
+                "furColor": "1",
+                "age": 1,
+                "breed": "1",
+                "picture": "1"
+            }
+        },
+        {
+            "phoneNumber": "2",
+            "name": "2",
+            "location": "2",
+            "timeLost": "2",
+            "dog": {
+                "size": "2",
+                "build": "2",
+                "name": "lost2",
+                "furColor": "2",
+                "age": 2,
+                "breed": "2",
+                "picture": "Images/Cutie.PNG"
+            }
+        }
+    ]
 }

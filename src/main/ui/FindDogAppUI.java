@@ -32,8 +32,9 @@ public class FindDogAppUI extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // modelled after drawing editor
+    // modelled after DrawingPlayer from class
     // Github link: https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete
+    // MODIFIES: this
     // EFFECTS: initializes and runs the Find Dog app
     public FindDogAppUI() {
         super("Find Dog App");
@@ -47,6 +48,7 @@ public class FindDogAppUI extends JFrame {
         initializeGraphics();
     }
 
+    // MODIFIES: this
     // EFFECTS: sets up the layout of the App and adds buttons
     private void initializeGraphics() {
         setLayout(new BorderLayout());
@@ -57,8 +59,9 @@ public class FindDogAppUI extends JFrame {
         setVisible(true);
     }
 
-    // modelled after AlarmControllerUI
+    // modelled after AlarmSystem
     // Github link: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
+    // MODIFIES: this
     // EFFECTS: adds buttons for loading/saving, running lost/found version and functionality
     private void addButtons() {
         JPanel buttonPanel = new JPanel();
@@ -70,14 +73,18 @@ public class FindDogAppUI extends JFrame {
         buttonPanel.add(new JButton(new LoadAction()));
 
         add(buttonPanel, BorderLayout.CENTER);
-
     }
 
+    // Runs the lost dog version 
     private class LostDogAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action 
         LostDogAction() {
             super("Lost Dog Mode");
         }
 
+        // MODIFIES: this
+        // EFFECTS: hides current UI and runs LostDogUI
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
@@ -85,11 +92,16 @@ public class FindDogAppUI extends JFrame {
         }
     }
 
+    // Runs the found dog version 
     private class FoundDogAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action 
         FoundDogAction() {
             super("Found Dog Mode");
         }
 
+        // MODIFIES: this
+        // EFFECTS: hides current UI and runs FoundDogUI
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
@@ -97,22 +109,31 @@ public class FindDogAppUI extends JFrame {
         }
     }
 
+    // Saves app data
     private class SaveAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         SaveAction() {
             super("Save Data");
         }
 
+        // EFFECTS: saves all current data 
         @Override
         public void actionPerformed(ActionEvent e) {
             saveData();
         }
     }
 
+    // Loads app data
     private class LoadAction extends AbstractAction {
+        // MODIFIES: this
+        // EFFECTS: constructs action
         LoadAction() {
             super("Load Data");
         }
 
+        // MODIFIES: this
+        // EFFECTS: loads data from file
         @Override
         public void actionPerformed(ActionEvent e) {
             loadData();
