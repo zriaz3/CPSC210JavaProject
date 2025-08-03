@@ -17,7 +17,7 @@ import persistence.JsonWriter;
 public class FindDogAppUI extends JFrame {
 
     public static final int WIDTH = 750;
-    public static final int HEIGHT = 750;
+    public static final int HEIGHT = 400;
 
     private static final int DOG_INDEX = 0;
     private static final int LOST_INDEX = 1;
@@ -64,7 +64,7 @@ public class FindDogAppUI extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 2));
 
-        buttonPanel.add(new JButton());
+        buttonPanel.add(new JButton(new LostDogAction()));
         buttonPanel.add(new JButton(new FoundDogAction()));
         buttonPanel.add(new JButton(new SaveAction()));
         buttonPanel.add(new JButton(new LoadAction()));
@@ -73,17 +73,17 @@ public class FindDogAppUI extends JFrame {
 
     }
 
-    // private class LostDogAction extends AbstractAction {
-    //     LostDogAction() {
-    //         super("Lost Dog Mode");
-    //     }
+    private class LostDogAction extends AbstractAction {
+        LostDogAction() {
+            super("Lost Dog Mode");
+        }
 
-    //     @Override
-    //     public void actionPerformed(ActionEvent e) {
-    //         setVisible(false);
-    //         new LostDogUI(currentDog, foundDogs, lostDogs, FindDogAppUI.this);
-    //     }
-    // }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setVisible(false);
+            new LostDogUI(currentDog, foundDogs, lostDogs, FindDogAppUI.this);
+        }
+    }
 
     private class FoundDogAction extends AbstractAction {
         FoundDogAction() {

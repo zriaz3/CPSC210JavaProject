@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import model.CurrentDog;
 import model.Dog;
@@ -14,7 +15,7 @@ import model.PersonFound;
 // Found dog GUI version of the application
 public class FoundDogUI extends JFrame {
     public static final int WIDTH = 750;
-    public static final int HEIGHT = 750;
+    public static final int HEIGHT = 400;
 
     private ListPersonFound foundDogs;
     private ListPersonLost lostDogs;
@@ -40,7 +41,7 @@ public class FoundDogUI extends JFrame {
     private void initializeGraphics() {
         setLayout(new BorderLayout());
         setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         addButtons();
         addDisplay();
@@ -48,12 +49,13 @@ public class FoundDogUI extends JFrame {
     }
 
     private void addButtons() {
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 5));
+        JPanel buttonPanel = new JPanel(new GridLayout(3, 3));
         buttonPanel.add(new JButton(new ReportFoundDogAction()));
+        buttonPanel.add(new JButton(new RemoveFoundDogAction()));
         buttonPanel.add(new JButton(new ViewLostDogsAction()));
         buttonPanel.add(new JButton(new CheckLostDogsAction()));
-        buttonPanel.add(new JButton(new removeFoundDogAction()));
-        buttonPanel.add(new JButton(new returnAction()));
+        buttonPanel.add(new JButton(new CheckCurrentDogAction()));
+        buttonPanel.add(new JButton(new ReturnAction()));
 
         add(buttonPanel, BorderLayout.NORTH);
     }
@@ -61,8 +63,8 @@ public class FoundDogUI extends JFrame {
     private void addDisplay() {
         display = new JTextArea();
         display.setEditable(false);
-        JScrollPane jScroll = new JScrollPane(display);
-        add(jScroll, BorderLayout.SOUTH);
+        JScrollPane scroll = new JScrollPane(display);
+        add(scroll, BorderLayout.CENTER);
     }
 
     private class ReportFoundDogAction extends AbstractAction {
@@ -72,8 +74,50 @@ public class FoundDogUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(FoundDogUI.this, "View Lost Dogs clicked!");
-         }
+            Dog dog = dogInfo();
+            currentDog.setDog(dog);
+            PersonFound personFound = personInfo(dog);
+            foundDogs.addPerson(personFound);
+            display.setText("Found Dog Reported!\n" + dog);
+        }
+
+        private PersonFound personInfo(Dog dog) {
+
+            String personName = JOptionPane.showInputDialog("Your name: ");
+            String phoneNumber = JOptionPane.showInputDialog("Your number: ");
+            String location = JOptionPane.showInputDialog("Location dog was found: ");
+            String timeLost = JOptionPane.showInputDialog("Time dog was found ");
+
+            return new PersonFound(personName, phoneNumber, location, timeLost, dog);
+        }
+
+        private Dog dogInfo() {
+
+            String dogName = JOptionPane.showInputDialog("Dog's name: ");
+            int age = userIntegerInput();
+            String breed = JOptionPane.showInputDialog("Dog's breed: ");
+            String color = JOptionPane.showInputDialog("Dog's color: ");
+            String size = JOptionPane.showInputDialog("Dog's size: ");
+            String build = JOptionPane.showInputDialog("Dog's build: ");
+            String picture = JOptionPane.showInputDialog("Dog's picture: ");
+
+            return new Dog(dogName, age, breed, color, size, build, picture);
+        }
+
+        private int userIntegerInput() {
+            int age = 0;
+
+            while (true) {
+                String dogAge = JOptionPane.showInputDialog("Dog's age: ");
+                try {
+                    age = Integer.parseInt(dogAge);
+                    break;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(FoundDogUI.this, "Enter valid number.");
+                }
+            }
+            return age;
+        }
     }
 
     private class ViewLostDogsAction extends AbstractAction {
@@ -83,40 +127,137 @@ public class FoundDogUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(FoundDogUI.this, "View Lost Dogs clicked!");
+            ArrayList<PersonLost> personLostDogs = lostDogs.getListPersonLost();
+
+            if (personLostDogs.isEmpty()) {
+                JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs yet!");
+            } else {
+                displayDogs(personLostDogs);
+            }
+        }
+
+        private void displayDogs(ArrayList<PersonLost> listPersonLost) {
+            for (PersonLost person : listPersonLost) {
+                JOptionPane.showMessageDialog(FoundDogUI.this, person.toString());
+                while (true) {
+                    String confirmDog = JOptionPane.showInputDialog("Is this your found dog? (Y/N)");
+                    if (confirmDog.equalsIgnoreCase("Y")) {
+                        JOptionPane.showMessageDialog(FoundDogUI.this, person.contactInfo());
+                        return;
+                    } else if (confirmDog.equalsIgnoreCase("N")) {
+                        while (true) {
+                            String keepLooking = JOptionPane
+                                    .showInputDialog("Keep looking or quit? Enter quit or look");
+                            if (keepLooking.equalsIgnoreCase("quit")) {
+                                return;
+                            } else if (keepLooking.equalsIgnoreCase("look")) {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            System.out.println("No more lost dogs.");
         }
     }
 
     private class CheckLostDogsAction extends AbstractAction {
         CheckLostDogsAction() {
-            super("Check Lost Dogs");
+            super("Check Lost Dogs For Your Found Dog");
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(FoundDogUI.this, "View Lost Dogs clicked!");
+            if (currentDog.getDog() == null) {
+                JOptionPane.showMessageDialog(FoundDogUI.this, "No report filed, file a report and try again!");
+            } else {
+                ArrayList<PersonLost> matches = lostDogs.searchLostPeople(currentDog.getDog());
+                displayDogs(matches);
+            }
+        }
+
+        private void displayDogs(ArrayList<PersonLost> listPersonLost) {
+            for (PersonLost person : listPersonLost) {
+                JOptionPane.showMessageDialog(FoundDogUI.this, person.toString());
+                while (true) {
+                    String confirmDog = JOptionPane.showInputDialog("Is this your found dog? (Y/N)");
+                    if (confirmDog.equalsIgnoreCase("Y")) {
+                        JOptionPane.showMessageDialog(FoundDogUI.this, person.contactInfo());
+                        return;
+                    } else if (confirmDog.equalsIgnoreCase("N")) {
+                        while (true) {
+                            String keepLooking = JOptionPane
+                                    .showInputDialog("Keep looking or quit? Enter quit or look");
+                            if (keepLooking.equalsIgnoreCase("quit")) {
+                                return;
+                            } else if (keepLooking.equalsIgnoreCase("look")) {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(FoundDogUI.this, "No more lost dogs.");
         }
     }
 
-    private class removeFoundDogAction extends AbstractAction {
-        removeFoundDogAction() {
+    private class RemoveFoundDogAction extends AbstractAction {
+        RemoveFoundDogAction() {
             super("Remove Found Dog Report");
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(FoundDogUI.this, "View Lost Dogs clicked!");
+            String name = JOptionPane
+                    .showInputDialog("Verify it is your report by answering these questions and remove it:"
+                            + "\nYour name: ");
+            String phoneNumber = JOptionPane.showInputDialog("Your phone Number: ");
+
+            boolean isRemoved = false;
+
+            for (PersonFound person : new ArrayList<>(foundDogs.getListPersonFound())) {
+                if (person.getName().equalsIgnoreCase(name) && person.getPhoneNumber().equals(phoneNumber)) {
+                    foundDogs.removePerson(person);
+                    JOptionPane.showMessageDialog(FoundDogUI.this, "Found dog report removed.");
+                    isRemoved = true;
+                    break;
+                }
+            }
+
+            if (!isRemoved) {
+                JOptionPane.showMessageDialog(FoundDogUI.this, "No report found.");
+            }
         }
     }
 
-    private class returnAction extends AbstractAction {
-        returnAction() {
+    private class CheckCurrentDogAction extends AbstractAction {
+        CheckCurrentDogAction() {
+            super("View Current Dog");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (currentDog.getDog() == null) {
+                JOptionPane.showMessageDialog(FoundDogUI.this, "No report filed!");
+            } else {
+                display.setText(currentDog.getDog().toString());
+            }
+        }
+    }
+
+    private class ReturnAction extends AbstractAction {
+        ReturnAction() {
             super("Return to main menu");
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(FoundDogUI.this, "View Lost Dogs clicked!");
-         }
+            dispose();
+            findDogAppUI.setVisible(true);
+
+        }
     }
 }
