@@ -1,6 +1,8 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -80,16 +82,7 @@ public class LostDogUI extends JFrame {
         dogPanel.add(new JLabel("Size: " + dog.getSize()));
         dogPanel.add(new JLabel("Build: " + dog.getBuild()));
 
-        if (dog.getPicture() != null && !dog.getPicture().isEmpty()) {
-            try {
-                ImageIcon imgIcon = new ImageIcon(dog.getPicture());
-                Image img = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
-                JLabel picLabel = new JLabel(new ImageIcon(img));
-                dogPanel.add(picLabel);
-            } catch (Exception e) {
-                dogPanel.add(new JLabel("No available picture."));
-            }
-        }
+        getPicture(dogPanel, dog);
         display.add(dogPanel);
     }
 
@@ -107,6 +100,12 @@ public class LostDogUI extends JFrame {
         dogPanel.add(new JLabel("Phone number: " + person.getPhoneNumber()));
         dogPanel.add(new JLabel("Location and Time Found: " + person.getLocation() + " " + person.getTimeFound()));
 
+        getPicture(dogPanel, dog);
+        dogPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        display.add(dogPanel);
+    }
+
+    private void getPicture(JPanel dogPanel, Dog dog) {
         if (dog.getPicture() != null && !dog.getPicture().isEmpty()) {
             try {
                 ImageIcon imgIcon = new ImageIcon(dog.getPicture());
@@ -117,9 +116,9 @@ public class LostDogUI extends JFrame {
                 dogPanel.add(new JLabel("No available picture."));
             }
         }
-        display.add(dogPanel);
     }
 
+    // https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
     private class ReportLostDogAction extends AbstractAction {
         ReportLostDogAction() {
             super("Report Lost Dog");
@@ -224,12 +223,15 @@ public class LostDogUI extends JFrame {
         }
 
         private void displayDogs(ArrayList<PersonFound> listPersonFound) {
+            display.removeAll();
             if (listPersonFound.isEmpty()) {
                 JOptionPane.showMessageDialog(LostDogUI.this, "No found dogs reported yet.");
                 return;
             }
             for (PersonFound person : listPersonFound) {
                 showAllInfo(person);
+                display.revalidate();
+                display.repaint();
             }
         }
     }   

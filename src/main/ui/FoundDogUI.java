@@ -1,6 +1,8 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class FoundDogUI extends JFrame {
     private ListPersonLost lostDogs;
     private CurrentDog currentDog;
     private FindDogAppUI findDogAppUI;
-    private JTextArea display;
+    private JPanel display;
 
     // modelled after drawing editor
     // Github link:
@@ -61,10 +63,59 @@ public class FoundDogUI extends JFrame {
     }
 
     private void addDisplay() {
-        display = new JTextArea();
-        display.setEditable(false);
+        display = new JPanel();
+        display.setLayout(new BoxLayout(display, BoxLayout.Y_AXIS));
         JScrollPane scroll = new JScrollPane(display);
         add(scroll, BorderLayout.CENTER);
+    }
+
+    private void showDog(Dog dog, String message) {
+        JPanel dogPanel = new JPanel();
+        dogPanel.setLayout(new BoxLayout(dogPanel, BoxLayout.Y_AXIS));
+        dogPanel.add(new JLabel(message));
+        dogPanel.add(new JLabel("Name: " + dog.getName()));
+        dogPanel.add(new JLabel("Age: " + dog.getAge()));
+        dogPanel.add(new JLabel("Breed: " + dog.getBreed()));
+        dogPanel.add(new JLabel("Color: " + dog.getFurColor()));
+        dogPanel.add(new JLabel("Size: " + dog.getSize()));
+        dogPanel.add(new JLabel("Build: " + dog.getBuild()));
+
+        getPicture(dogPanel, dog);
+        display.add(dogPanel);
+    }
+
+    // https://stackoverflow.com/questions/66502178/how-to-add-spacing-between-jpanel-and-jframes-contentpane
+    private void showAllInfo(PersonLost person) {
+        Dog dog = person.getDog();
+        JPanel dogPanel = new JPanel();
+        dogPanel.setLayout(new BoxLayout(dogPanel, BoxLayout.Y_AXIS));
+        dogPanel.add(new JLabel("Name: " + dog.getName()));
+        dogPanel.add(new JLabel("Age: " + dog.getAge()));
+        dogPanel.add(new JLabel("Breed: " + dog.getBreed()));
+        dogPanel.add(new JLabel("Color: " + dog.getFurColor()));
+        dogPanel.add(new JLabel("Size: " + dog.getSize()));
+        dogPanel.add(new JLabel("Build: " + dog.getBuild()));
+        dogPanel.add(new JLabel("Reported by: " + person.getName()));
+        dogPanel.add(new JLabel("Phone number: " + person.getPhoneNumber()));
+        dogPanel.add(new JLabel("Location and Time Lost: " + person.getLocation() + " " + person.getTimeLost()));
+
+        getPicture(dogPanel, dog);
+        dogPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        display.add(dogPanel);
+    }
+
+    // https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
+    private void getPicture(JPanel dogPanel, Dog dog) {
+        if (dog.getPicture() != null && !dog.getPicture().isEmpty()) {
+            try {
+                ImageIcon imgIcon = new ImageIcon(dog.getPicture());
+                Image img = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+                JLabel picLabel = new JLabel(new ImageIcon(img));
+                dogPanel.add(picLabel);
+            } catch (Exception e) {
+                dogPanel.add(new JLabel("No available picture."));
+            }
+        }
     }
 
     private class ReportFoundDogAction extends AbstractAction {
@@ -78,7 +129,11 @@ public class FoundDogUI extends JFrame {
             currentDog.setDog(dog);
             PersonFound personFound = personInfo(dog);
             foundDogs.addPerson(personFound);
-            display.setText("Found Dog Reported!\n" + dog);
+
+            display.removeAll();
+            showDog(dog, "Found Dog Reported!");
+            display.revalidate();
+            display.repaint();
         }
 
         private PersonFound personInfo(Dog dog) {
@@ -129,23 +184,25 @@ public class FoundDogUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             ArrayList<PersonLost> personLostDogs = lostDogs.getListPersonLost();
 
+            display.removeAll();
+
             if (personLostDogs.isEmpty()) {
                 JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs yet!");
             } else {
                 displayDogs(personLostDogs);
+                display.revalidate();
+                display.repaint();
             }
         }
 
         private void displayDogs(ArrayList<PersonLost> listPersonLost) {
             if (listPersonLost.isEmpty()) {
-                display.setText("No lost dogs reported yet.");
+                JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs reported yet.");
                 return;
             }
-            StringBuilder sb = new StringBuilder();
             for (PersonLost person : listPersonLost) {
-                sb.append(person.toString()).append("\n\n");
+                showAllInfo(person);
             }
-            display.setText(sb.toString());
         }
     }
 
@@ -156,24 +213,27 @@ public class FoundDogUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            display.removeAll();
+
             if (currentDog.getDog() == null) {
                 JOptionPane.showMessageDialog(FoundDogUI.this, "No report filed, file a report and try again!");
             } else {
                 ArrayList<PersonLost> matches = lostDogs.searchLostPeople(currentDog.getDog());
                 displayDogs(matches);
+                display.revalidate();
+                display.repaint();
             }
         }
 
         private void displayDogs(ArrayList<PersonLost> listPersonLost) {
             if (listPersonLost.isEmpty()) {
-                display.setText("No lost dogs reported yet.");
+                JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs reported yet.");
                 return;
             }
-            StringBuilder sb = new StringBuilder();
             for (PersonLost person : listPersonLost) {
-                sb.append(person.toString()).append("\n\n");
+                showAllInfo(person);
             }
-            display.setText(sb.toString());
         }
     }
 
@@ -216,7 +276,10 @@ public class FoundDogUI extends JFrame {
             if (currentDog.getDog() == null) {
                 JOptionPane.showMessageDialog(FoundDogUI.this, "No report filed!");
             } else {
-                display.setText(currentDog.getDog().toString());
+                display.removeAll();
+                showDog(currentDog.getDog(), "Current Dog: ");
+                display.revalidate();
+                display.repaint();
             }
         }
     }
