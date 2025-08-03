@@ -21,7 +21,7 @@ public class LostDogUI extends JFrame {
     private ListPersonLost lostDogs;
     private CurrentDog currentDog;
     private FindDogAppUI findDogAppUI;
-    private JTextArea display;
+    private JPanel display;
 
     // modelled after drawing editor
     // Github link:
@@ -61,10 +61,63 @@ public class LostDogUI extends JFrame {
     }
 
     private void addDisplay() {
-        display = new JTextArea();
-        display.setEditable(false);
+        display = new JPanel();
+        display.setLayout(new BoxLayout(display, BoxLayout.Y_AXIS));
         JScrollPane scroll = new JScrollPane(display);
         add(scroll, BorderLayout.CENTER);
+    }
+
+    // Stackoverflow link:
+    // https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
+    private void showDog(Dog dog, String message) {
+        JPanel dogPanel = new JPanel();
+        dogPanel.setLayout(new BoxLayout(dogPanel, BoxLayout.Y_AXIS));
+        dogPanel.add(new JLabel(message));
+        dogPanel.add(new JLabel("Name: " + dog.getName()));
+        dogPanel.add(new JLabel("Age: " + dog.getAge()));
+        dogPanel.add(new JLabel("Breed: " + dog.getBreed()));
+        dogPanel.add(new JLabel("Color: " + dog.getFurColor()));
+        dogPanel.add(new JLabel("Size: " + dog.getSize()));
+        dogPanel.add(new JLabel("Build: " + dog.getBuild()));
+
+        if (dog.getPicture() != null && !dog.getPicture().isEmpty()) {
+            try {
+                ImageIcon imgIcon = new ImageIcon(dog.getPicture());
+                Image img = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+                JLabel picLabel = new JLabel(new ImageIcon(img));
+                dogPanel.add(picLabel);
+            } catch (Exception e) {
+                dogPanel.add(new JLabel("No available picture."));
+            }
+        }
+        display.add(dogPanel);
+    }
+
+    private void showAllInfo(PersonFound person) {
+        Dog dog = person.getDog();
+        JPanel dogPanel = new JPanel();
+        dogPanel.setLayout(new BoxLayout(dogPanel, BoxLayout.Y_AXIS));
+        dogPanel.add(new JLabel("Name: " + dog.getName()));
+        dogPanel.add(new JLabel("Age: " + dog.getAge()));
+        dogPanel.add(new JLabel("Breed: " + dog.getBreed()));
+        dogPanel.add(new JLabel("Color: " + dog.getFurColor()));
+        dogPanel.add(new JLabel("Size: " + dog.getSize()));
+        dogPanel.add(new JLabel("Build: " + dog.getBuild()));
+        dogPanel.add(new JLabel("Reported by: " + person.getName()));
+        dogPanel.add(new JLabel("Phone number: " + person.getPhoneNumber()));
+        dogPanel.add(new JLabel("Location and Time Found: " + person.getLocation() + " " + person.getTimeFound()));
+
+        if (dog.getPicture() != null && !dog.getPicture().isEmpty()) {
+            try {
+                ImageIcon imgIcon = new ImageIcon(dog.getPicture());
+                Image img = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+                JLabel picLabel = new JLabel(new ImageIcon(img));
+                dogPanel.add(picLabel);
+            } catch (Exception e) {
+                dogPanel.add(new JLabel("No available picture."));
+            }
+        }
+        display.add(dogPanel);
     }
 
     private class ReportLostDogAction extends AbstractAction {
@@ -79,7 +132,10 @@ public class LostDogUI extends JFrame {
             PersonLost personLost = personInfo(dog);
             lostDogs.addPerson(personLost);
 
-            display.setText("Lost Dog Reported!\n" + dog);
+            display.removeAll();
+            showDog(dog, "Lost Dog Reported!");
+            display.revalidate();
+            display.repaint();
         }
 
         private PersonLost personInfo(Dog dog) {
@@ -130,23 +186,25 @@ public class LostDogUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             ArrayList<PersonFound> personFoundDogs = foundDogs.getListPersonFound();
 
+            display.removeAll();
+
             if (personFoundDogs.isEmpty()) {
                 JOptionPane.showMessageDialog(LostDogUI.this, "No found dogs yet!");
             } else {
                 displayDogs(personFoundDogs);
+                display.revalidate();
+                display.repaint();
             }
         }
 
         private void displayDogs(ArrayList<PersonFound> listPersonFound) {
             if (listPersonFound.isEmpty()) {
-                display.setText("No found dogs reported yet.");
+                JOptionPane.showMessageDialog(LostDogUI.this, "No found dogs reported yet.");
                 return;
             }
-            StringBuilder sb = new StringBuilder();
             for (PersonFound person : listPersonFound) {
-                sb.append(person.toString()).append("\n\n");
+                showAllInfo(person);
             }
-            display.setText(sb.toString());
         }
     }
 
@@ -167,16 +225,14 @@ public class LostDogUI extends JFrame {
 
         private void displayDogs(ArrayList<PersonFound> listPersonFound) {
             if (listPersonFound.isEmpty()) {
-                display.setText("No found dogs reported yet.");
+                JOptionPane.showMessageDialog(LostDogUI.this, "No found dogs reported yet.");
                 return;
             }
-            StringBuilder sb = new StringBuilder();
             for (PersonFound person : listPersonFound) {
-                sb.append(person.toString()).append("\n\n");
+                showAllInfo(person);
             }
-            display.setText(sb.toString());
         }
-    }
+    }   
 
     private class RemoveLostDogAction extends AbstractAction {
         RemoveLostDogAction() {
@@ -217,7 +273,10 @@ public class LostDogUI extends JFrame {
             if (currentDog.getDog() == null) {
                 JOptionPane.showMessageDialog(LostDogUI.this, "No report filed!");
             } else {
-                display.setText(currentDog.getDog().toString());
+                display.removeAll();
+                showDog(currentDog.getDog(), "Current Dog: ");
+                display.revalidate();
+                display.repaint();
             }
         }
     }
