@@ -138,29 +138,15 @@ public class LostDogUI extends JFrame {
         }
 
         private void displayDogs(ArrayList<PersonFound> listPersonFound) {
-            for (PersonFound person : listPersonFound) {
-                JOptionPane.showMessageDialog(LostDogUI.this, person.toString());
-                while (true) {
-                    String confirmDog = JOptionPane.showInputDialog("Is this your lost dog? (Y/N)");
-                    if (confirmDog.equalsIgnoreCase("Y")) {
-                        JOptionPane.showMessageDialog(LostDogUI.this, person.contactInfo());
-                        return;
-                    } else if (confirmDog.equalsIgnoreCase("N")) {
-                        while (true) {
-                            String keepLooking = JOptionPane
-                                    .showInputDialog("Keep looking or quit? Enter quit or look");
-                            if (keepLooking.equalsIgnoreCase("quit")) {
-                                return;
-                            } else if (keepLooking.equalsIgnoreCase("look")) {
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
+            if (listPersonFound.isEmpty()) {
+                display.setText("No found dogs reported yet.");
+                return;
             }
-
-            JOptionPane.showMessageDialog(LostDogUI.this, "No more found dogs.");
+            StringBuilder sb = new StringBuilder();
+            for (PersonFound person : listPersonFound) {
+                sb.append(person.toString()).append("\n\n");
+            }
+            display.setText(sb.toString());
         }
     }
 
@@ -180,29 +166,15 @@ public class LostDogUI extends JFrame {
         }
 
         private void displayDogs(ArrayList<PersonFound> listPersonFound) {
-            for (PersonFound person : listPersonFound) {
-                JOptionPane.showMessageDialog(LostDogUI.this, person.toString());
-                while (true) {
-                    String confirmDog = JOptionPane.showInputDialog("Is this your lost dog? (Y/N)");
-                    if (confirmDog.equalsIgnoreCase("Y")) {
-                        JOptionPane.showMessageDialog(LostDogUI.this, person.contactInfo());
-                        return;
-                    } else if (confirmDog.equalsIgnoreCase("N")) {
-                        while (true) {
-                            String keepLooking = JOptionPane
-                                    .showInputDialog("Keep looking or quit? Enter quit or look");
-                            if (keepLooking.equalsIgnoreCase("quit")) {
-                                return;
-                            } else if (keepLooking.equalsIgnoreCase("look")) {
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
+            if (listPersonFound.isEmpty()) {
+                display.setText("No found dogs reported yet.");
+                return;
             }
-
-            JOptionPane.showMessageDialog(LostDogUI.this,"No more found dogs.");
+            StringBuilder sb = new StringBuilder();
+            for (PersonFound person : listPersonFound) {
+                sb.append(person.toString()).append("\n\n");
+            }
+            display.setText(sb.toString());
         }
     }
 
