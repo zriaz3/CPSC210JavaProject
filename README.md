@@ -24,3 +24,30 @@ The intended target audience is the general public. Anyone who has lost a dog ca
  - You can locate my visual component by adding images of the dogs. When filing a report, when prompted to add a picture you can either use your own image or use the ones added already by specifying the file path i.e "Images/Cutie.PNG". When looking through the lists, the images will also be there. 
  - You can save the state of my application by clicking the Save Data button in the main menu.
  - You can reload the state of my application by clicking the Load Data button in the main menu.
+
+ # Phase 4: Task 2
+
+ Wed Aug 06 13:14:41 PDT 2025
+ Current dog changed
+ Wed Aug 06 13:14:43 PDT 2025
+ Lost dog report filed
+ Wed Aug 06 13:14:49 PDT 2025
+ Current dog changed
+ Wed Aug 06 13:14:51 PDT 2025
+ Found dog report filed
+ Wed Aug 06 13:14:56 PDT 2025
+ Looked through all found dogs
+ Wed Aug 06 13:14:58 PDT 2025
+ Searched found dogs for potential matches
+ Wed Aug 06 13:15:01 PDT 2025
+ Looked through all lost dogs
+ Wed Aug 06 13:15:02 PDT 2025
+ Searched lost dogs for potential matches
+ Wed Aug 06 13:15:07 PDT 2025
+ Looked through all lost dogs
+ Wed Aug 06 13:15:07 PDT 2025
+ Lost dog report removed
+ Wed Aug 06 13:15:10 PDT 2025
+ Looked through all found dogs
+ Wed Aug 06 13:15:10 PDT 2025
+ Found dog report removed
