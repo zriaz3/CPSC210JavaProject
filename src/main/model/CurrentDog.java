@@ -17,5 +17,6 @@ public class CurrentDog {
     // EFFECTS: sets the current dog to given dog
     public void setDog(Dog dog) {
         this.dog = dog;
+        EventLog.getInstance().logEvent(new Event("Current dog changed"));
     }
 }

@@ -17,15 +17,18 @@ public class ListPersonFound {
     // EFFECTS: add a person to list of people who found dogs
     public void addPerson(PersonFound person) {
         peopleFound.add(person);
+        EventLog.getInstance().logEvent(new Event("Found dog report filed"));
     }
 
     // MODIFIES: this
     // EFFECTS: remove a person from list of people who found dogs
     public void removePerson(PersonFound person) {
         peopleFound.remove(person);
+        EventLog.getInstance().logEvent(new Event("Found dog report removed"));
     }
 
     public ArrayList<PersonFound> getListPersonFound() {
+        EventLog.getInstance().logEvent(new Event("Looked through all found dogs"));
         return peopleFound;
     }
 
@@ -66,7 +69,7 @@ public class ListPersonFound {
                 matches.add(personF);
             }
         }
-
+        EventLog.getInstance().logEvent(new Event("Searched found dogs for potential matches"));
         return matches;
     }
 
