@@ -51,3 +51,9 @@ The intended target audience is the general public. Anyone who has lost a dog ca
  Looked through all found dogs
  Wed Aug 06 13:15:10 PDT 2025
  Found dog report removed
+
+ # Phase 4: Task 3
+
+ We can see that a lot of classes are overlapping for example the personFound and personLost, their functionality is very similar so it would be better to have an abstract class of person and just have personFound and personLost extend that to reduce repetition of code. There is also a similar argument for creating an abstract class for ListPersonFound and ListPersonLost. 
+ 
+ As for the classes in the ui package, a lot of the functionality is also shared so an abstract class for the gui version and a seperate one for the console version would reduce a lot of code repetition. I could also refactor by creating a helper methods class that has all the basic design functionality such as adding a display/ getting a picture and this would also reduce repetition of code. 
