@@ -5,9 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import model.CurrentDog;
 import model.Dog;
+import model.EventLog;
+import model.Event;
 import model.ListPersonFound;
 import model.ListPersonLost;
 import persistence.JsonReader;
@@ -33,12 +37,13 @@ public class FindDogAppUI extends JFrame {
     private JsonReader jsonReader;
 
     // modelled after DrawingPlayer from class
-    // Github link: https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete
+    // Github link:
+    // https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete
     // MODIFIES: this
     // EFFECTS: initializes and runs the Find Dog app
     public FindDogAppUI() {
         super("Find Dog App");
-        
+
         foundDogs = new ListPersonFound();
         lostDogs = new ListPersonLost();
         currentDog = new CurrentDog(null);
@@ -54,15 +59,25 @@ public class FindDogAppUI extends JFrame {
         setLayout(new BorderLayout());
         setSize(WIDTH, HEIGHT);
         addButtons();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event);
+                }
+                System.exit(0);
+            }
+        });
     }
 
     // modelled after AlarmSystem
     // Github link: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
     // MODIFIES: this
-    // EFFECTS: adds buttons for loading/saving, running lost/found version and functionality
+    // EFFECTS: adds buttons for loading/saving, running lost/found version and
+    // functionality
     private void addButtons() {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 2));
@@ -75,10 +90,10 @@ public class FindDogAppUI extends JFrame {
         add(buttonPanel, BorderLayout.CENTER);
     }
 
-    // Runs the lost dog version 
+    // Runs the lost dog version
     private class LostDogAction extends AbstractAction {
         // MODIFIES: this
-        // EFFECTS: constructs action 
+        // EFFECTS: constructs action
         LostDogAction() {
             super("Lost Dog Mode");
         }
@@ -92,10 +107,10 @@ public class FindDogAppUI extends JFrame {
         }
     }
 
-    // Runs the found dog version 
+    // Runs the found dog version
     private class FoundDogAction extends AbstractAction {
         // MODIFIES: this
-        // EFFECTS: constructs action 
+        // EFFECTS: constructs action
         FoundDogAction() {
             super("Found Dog Mode");
         }
@@ -117,7 +132,7 @@ public class FindDogAppUI extends JFrame {
             super("Save Data");
         }
 
-        // EFFECTS: saves all current data 
+        // EFFECTS: saves all current data
         @Override
         public void actionPerformed(ActionEvent e) {
             saveData();
