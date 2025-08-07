@@ -27,30 +27,30 @@ The intended target audience is the general public. Anyone who has lost a dog ca
 
 # Phase 4: Task 2
 
-- Wed Aug 06 13:14:41 PDT 2025
+- Wed Aug 06 20:11:07 PDT 2025
 - Current dog changed
-- Wed Aug 06 13:14:43 PDT 2025
-- Lost dog report filed
-- Wed Aug 06 13:14:49 PDT 2025
+- Wed Aug 06 20:11:09 PDT 2025
+- Lost dog added
+- Wed Aug 06 20:11:16 PDT 2025
 - Current dog changed
-- Wed Aug 06 13:14:51 PDT 2025
-- Found dog report filed
-- Wed Aug 06 13:14:56 PDT 2025
+- Wed Aug 06 20:11:18 PDT 2025
+- Found dog added
+- Wed Aug 06 20:11:23 PDT 2025
 - Looked through all found dogs
-- Wed Aug 06 13:14:58 PDT 2025
+- Wed Aug 06 20:11:28 PDT 2025
 - Searched found dogs for potential matches
-- Wed Aug 06 13:15:01 PDT 2025
+- Wed Aug 06 20:11:31 PDT 2025
 - Looked through all lost dogs
-- Wed Aug 06 13:15:02 PDT 2025
+- Wed Aug 06 20:11:32 PDT 2025
 - Searched lost dogs for potential matches
-- Wed Aug 06 13:15:07 PDT 2025
+- Wed Aug 06 20:11:35 PDT 2025
 - Looked through all lost dogs
-- Wed Aug 06 13:15:07 PDT 2025
-- Lost dog report removed
-- Wed Aug 06 13:15:10 PDT 2025
+- Wed Aug 06 20:11:35 PDT 2025
+- Lost dog removed
+- Wed Aug 06 20:11:39 PDT 2025
 - Looked through all found dogs
-- Wed Aug 06 13:15:10 PDT 2025
-- Found dog report removed
+- Wed Aug 06 20:11:39 PDT 2025
+- Found dog removed
 
 # Phase 4: Task 3
 

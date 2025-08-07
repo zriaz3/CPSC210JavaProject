@@ -18,14 +18,14 @@ public class ListPersonLost {
     // EFFECTS: add a person to list of people who lost dogs
     public void addPerson(PersonLost person) {
         peopleLost.add(person);
-        EventLog.getInstance().logEvent(new Event("Lost dog report filed"));
+        EventLog.getInstance().logEvent(new Event("Lost dog added"));
     }
 
     // MODIFIES: this
     // EFFECTS: remove a person from list of people who lost dogs
     public void removePerson(PersonLost person) {
         peopleLost.remove(person);
-        EventLog.getInstance().logEvent(new Event("Lost dog report removed"));
+        EventLog.getInstance().logEvent(new Event("Lost dog removed"));
     }
 
     public ArrayList<PersonLost> getListPersonLost() {

@@ -17,14 +17,14 @@ public class ListPersonFound {
     // EFFECTS: add a person to list of people who found dogs
     public void addPerson(PersonFound person) {
         peopleFound.add(person);
-        EventLog.getInstance().logEvent(new Event("Found dog report filed"));
+        EventLog.getInstance().logEvent(new Event("Found dog added"));
     }
 
     // MODIFIES: this
     // EFFECTS: remove a person from list of people who found dogs
     public void removePerson(PersonFound person) {
         peopleFound.remove(person);
-        EventLog.getInstance().logEvent(new Event("Found dog report removed"));
+        EventLog.getInstance().logEvent(new Event("Found dog removed"));
     }
 
     public ArrayList<PersonFound> getListPersonFound() {
