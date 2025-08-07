@@ -25,35 +25,35 @@ The intended target audience is the general public. Anyone who has lost a dog ca
  - You can save the state of my application by clicking the Save Data button in the main menu.
  - You can reload the state of my application by clicking the Load Data button in the main menu.
 
- # Phase 4: Task 2
+# Phase 4: Task 2
 
- Wed Aug 06 13:14:41 PDT 2025
- Current dog changed
- Wed Aug 06 13:14:43 PDT 2025
- Lost dog report filed
- Wed Aug 06 13:14:49 PDT 2025
- Current dog changed
- Wed Aug 06 13:14:51 PDT 2025
- Found dog report filed
- Wed Aug 06 13:14:56 PDT 2025
- Looked through all found dogs
- Wed Aug 06 13:14:58 PDT 2025
- Searched found dogs for potential matches
- Wed Aug 06 13:15:01 PDT 2025
- Looked through all lost dogs
- Wed Aug 06 13:15:02 PDT 2025
- Searched lost dogs for potential matches
- Wed Aug 06 13:15:07 PDT 2025
- Looked through all lost dogs
- Wed Aug 06 13:15:07 PDT 2025
- Lost dog report removed
- Wed Aug 06 13:15:10 PDT 2025
- Looked through all found dogs
- Wed Aug 06 13:15:10 PDT 2025
- Found dog report removed
+- Wed Aug 06 13:14:41 PDT 2025
+- Current dog changed
+- Wed Aug 06 13:14:43 PDT 2025
+- Lost dog report filed
+- Wed Aug 06 13:14:49 PDT 2025
+- Current dog changed
+- Wed Aug 06 13:14:51 PDT 2025
+- Found dog report filed
+- Wed Aug 06 13:14:56 PDT 2025
+- Looked through all found dogs
+- Wed Aug 06 13:14:58 PDT 2025
+- Searched found dogs for potential matches
+- Wed Aug 06 13:15:01 PDT 2025
+- Looked through all lost dogs
+- Wed Aug 06 13:15:02 PDT 2025
+- Searched lost dogs for potential matches
+- Wed Aug 06 13:15:07 PDT 2025
+- Looked through all lost dogs
+- Wed Aug 06 13:15:07 PDT 2025
+- Lost dog report removed
+- Wed Aug 06 13:15:10 PDT 2025
+- Looked through all found dogs
+- Wed Aug 06 13:15:10 PDT 2025
+- Found dog report removed
 
- # Phase 4: Task 3
+# Phase 4: Task 3
 
- We can see that a lot of classes are overlapping for example the personFound and personLost, their functionality is very similar so it would be better to have an abstract class of person and just have personFound and personLost extend that to reduce repetition of code. There is also a similar argument for creating an abstract class for ListPersonFound and ListPersonLost. 
+- We can see that a lot of classes are overlapping for example the personFound and personLost, their functionality is very similar so it would be better to have an abstract class of person and just have personFound and personLost extend that to reduce repetition of code. There is also a similar argument for creating an abstract class for ListPersonFound and ListPersonLost. 
  
- As for the classes in the ui package, a lot of the functionality is also shared so an abstract class for the gui version and a seperate one for the console version would reduce a lot of code repetition. I could also refactor by creating a helper methods class that has all the basic design functionality such as adding a display/ getting a picture and this would also reduce repetition of code. 
+- As for the classes in the ui package, a lot of the functionality is also shared so an abstract class for the gui version and a seperate one for the console version would reduce a lot of code repetition. I could also refactor by creating a helper methods class that has all the basic design functionality such as adding a display/ getting a picture and this would also reduce repetition of code. 
