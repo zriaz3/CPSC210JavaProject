@@ -26,7 +26,7 @@ public class JsonTest {
         assertEquals(name, p.getName());
         assertEquals(phoneNumber, p.getPhoneNumber());
         assertEquals(location, p.getLocation());
-        assertEquals(timeLost, p.getTimeLost());
+        assertEquals(timeLost, p.getTime());
         checkDog(dog.getName(), dog.getAge(), dog.getBreed(), dog.getFurColor(), 
                  dog.getSize(), dog.getBuild(), dog.getPicture(), p.getDog());
     }
@@ -36,7 +36,7 @@ public class JsonTest {
         assertEquals(name, p.getName());
         assertEquals(phoneNumber, p.getPhoneNumber());
         assertEquals(location, p.getLocation());
-        assertEquals(timeFound, p.getTimeFound());
+        assertEquals(timeFound, p.getTime());
         checkDog(dog.getName(), dog.getAge(), dog.getBreed(), dog.getFurColor(), 
                  dog.getSize(), dog.getBuild(), dog.getPicture(), p.getDog());
     }

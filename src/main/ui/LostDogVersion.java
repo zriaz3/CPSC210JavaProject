@@ -11,18 +11,11 @@ import model.ListPersonLost;
 import model.PersonFound;
 
 // Lost dog version of the application
-public class LostDogVersion {
-    private Scanner input;
-    private ListPersonFound foundDogs;
-    private ListPersonLost lostDogs;
-    private CurrentDog currentDog;
+public class LostDogVersion extends ConsoleHelper {
 
     // EFFECTS: runs the lost dog version
     public LostDogVersion(CurrentDog currentDog, ListPersonFound foundDogs, ListPersonLost lostDogs, Scanner input) {
-        this.foundDogs = foundDogs;
-        this.lostDogs = lostDogs;
-        this.input = input;
-        this.currentDog = currentDog;
+        super(currentDog, foundDogs, lostDogs, input);
 
         while (true) {
             System.out.println("Choose one of the following options by typing the corresponding letter:");
@@ -55,7 +48,8 @@ public class LostDogVersion {
         lostDogs.addPerson(personLost);
     }
 
-    // EFFECTS: runs the current dog through all the found dogs in the list for a possible match
+    // EFFECTS: runs the current dog through all the found dogs in the list for a
+    // possible match
     private void checkFoundDogs() {
         if (currentDog.getDog() == null) {
             System.out.println("No report filed, file a report and try again!");
@@ -74,51 +68,6 @@ public class LostDogVersion {
         } else {
             displayDogs(personFoundDogs);
         }
-    }
-
-    // EFFECTS gets user integer input
-    private int userIntegerInput() {
-        int age = 0;
-        while (true) {
-            String dogAge = input.nextLine();
-            try {
-                age = Integer.parseInt(dogAge);
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Enter valid number.");
-            }
-        }
-
-        return age;
-    }
-
-    // EFFECTS: gets information about the lost dog
-    private Dog dogInfo() {
-        System.out.println("Fill out the following information about your lost dog:");
-
-        System.out.println("Your dog's name: ");
-        String dogName = input.nextLine();
-
-        System.out.println("Your dog's age(enter closest whole number i.e. 1, 2, 3): ");
-        int age = userIntegerInput();
-
-        System.out.println("Your dog's breed: ");
-        String breed = input.nextLine();
-
-        System.out.println("Your dog's most prominent fur color: ");
-        String furColor = input.nextLine();
-
-        System.out.println("Your dog's most prominent build feature(muscular, lean, tall, etc): ");
-        String build = input.nextLine();
-
-        System.out.println("Your dog's size(small/ medium/ large): ");
-        String size = input.nextLine();
-
-        System.out.println("Your dog's picture: ");
-        String picture = input.nextLine();
-
-        return new Dog(dogName, age, breed, furColor, size, build, picture);
-
     }
 
     // EFFECTS: gets information about person who lost the dog
@@ -153,7 +102,7 @@ public class LostDogVersion {
 
         boolean isRemoved = false;
 
-        for (PersonLost person : new ArrayList<>(lostDogs.getListPersonLost())) {
+        for (PersonLost person : lostDogs.getListPersonLost()) {
             if (person.getName().equalsIgnoreCase(name) && person.getPhoneNumber().equals(phoneNumber)) {
                 lostDogs.removePerson(person);
                 System.out.println("Lost dog report removed.");
@@ -170,28 +119,10 @@ public class LostDogVersion {
     // EFFECTS: Displays all found dogs one by one
     private void displayDogs(ArrayList<PersonFound> listPersonFound) {
         for (PersonFound person : listPersonFound) {
-            System.out.println(person.toString());
-            while (true) {
-                System.out.println("Is this your lost dog? (Y/N)");
-                String confirmDog = input.nextLine();
-                if (confirmDog.equalsIgnoreCase("Y")) {
-                    System.out.println(person.contactInfo());
-                    return;
-                } else if (confirmDog.equalsIgnoreCase("N")) {
-                    while (true) {
-                        System.out.println("Keep looking or quit? Enter quit or look");
-                        String keepLooking = input.nextLine();
-                        if (keepLooking.equalsIgnoreCase("quit")) {
-                            return;
-                        } else if (keepLooking.equalsIgnoreCase("look")) {
-                            break;
-                        }
-                    }
-                    break;
-                }
+            if (displayDogsHelper(person)) {
+                return;
             }
         }
-
-        System.out.println("No more lost dogs.");
+        System.out.println("No more found dogs.");
     }
 }

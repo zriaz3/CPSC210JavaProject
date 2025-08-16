@@ -21,7 +21,7 @@ public class PersonFoundTest {
         assertEquals("Zain", testPersonFound.getName());
         assertEquals("1234567891", testPersonFound.getPhoneNumber());
         assertEquals("Vancouver", testPersonFound.getLocation());
-        assertEquals("7pm July 1st", testPersonFound.getTimeFound());
+        assertEquals("7pm July 1st", testPersonFound.getTime());
         assertEquals(testDog, testPersonFound.getDog());
     }
 

@@ -64,7 +64,7 @@ public class FoundDogUI extends JFrame {
 
         add(buttonPanel, BorderLayout.NORTH);
     }
-    
+
     // MODIFIES: this
     // EFFECTS: initialize display
     private void addDisplay() {
@@ -91,7 +91,8 @@ public class FoundDogUI extends JFrame {
         display.add(dogPanel);
     }
 
-    // Reference: https://stackoverflow.com/questions/66502178/how-to-add-spacing-between-jpanel-and-jframes-contentpane
+    // Reference:
+    // https://stackoverflow.com/questions/66502178/how-to-add-spacing-between-jpanel-and-jframes-contentpane
     // MODIFIES: this
     // EFFECTS: displays all info about person and dog
     private void showAllInfo(PersonLost person) {
@@ -106,14 +107,15 @@ public class FoundDogUI extends JFrame {
         dogPanel.add(new JLabel("Build: " + dog.getBuild()));
         dogPanel.add(new JLabel("Reported by: " + person.getName()));
         dogPanel.add(new JLabel("Phone number: " + person.getPhoneNumber()));
-        dogPanel.add(new JLabel("Location and Time Lost: " + person.getLocation() + " " + person.getTimeLost()));
+        dogPanel.add(new JLabel("Location and Time Lost: " + person.getLocation() + " " + person.getTime()));
 
         getPicture(dogPanel, dog);
         dogPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         display.add(dogPanel);
     }
 
-    // Reference: https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
+    // Reference:
+    // https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
     // MODIFIES: dogPanel
     // EFFECTS: adds image to dogPanel if available
     private void getPicture(JPanel dogPanel, Dog dog) {
@@ -129,6 +131,18 @@ public class FoundDogUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays all lost dogs
+    private void displayDogs(ArrayList<PersonLost> listPersonLost) {
+        if (listPersonLost.isEmpty()) {
+            JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs reported yet.");
+            return;
+        }
+        for (PersonLost person : listPersonLost) {
+            showAllInfo(person);
+        }
+    }
+
     // Handles reporting of a found dog
     private class ReportFoundDogAction extends AbstractAction {
         // MODIFIES: this
@@ -137,7 +151,8 @@ public class FoundDogUI extends JFrame {
             super("Report Found Dog");
         }
 
-        // Reference: https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
+        // Reference:
+        // https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
         // MODIFIES: this, currentDog, foundDogs
         // EFFECTS: gets found dog info, adds to list of found, displays found dog
         @Override
@@ -152,7 +167,6 @@ public class FoundDogUI extends JFrame {
             display.revalidate();
             display.repaint();
         }
-        
 
         // EFFECTS: get info about person
         private PersonFound personInfo(Dog dog) {
@@ -176,7 +190,7 @@ public class FoundDogUI extends JFrame {
 
             return new Dog(dogName, age, breed, color, size, build, picture);
         }
-        
+
         // EFFECTS: gets user integer input
         private int userIntegerInput() {
             int age = 0;
@@ -218,18 +232,6 @@ public class FoundDogUI extends JFrame {
                 display.repaint();
             }
         }
-
-        // MODIFIES: this
-        // EFFECTS: displays all lost dogs together
-        private void displayDogs(ArrayList<PersonLost> listPersonLost) {
-            if (listPersonLost.isEmpty()) {
-                JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs reported yet.");
-                return;
-            }
-            for (PersonLost person : listPersonLost) {
-                showAllInfo(person);
-            }
-        }
     }
 
     // Handles comparing found dog to lost dogs
@@ -254,18 +256,6 @@ public class FoundDogUI extends JFrame {
                 displayDogs(matches);
                 display.revalidate();
                 display.repaint();
-            }
-        }
-
-        // MODIFIES: this
-        // EFFECTS: displays all lost dogs
-        private void displayDogs(ArrayList<PersonLost> listPersonLost) {
-            if (listPersonLost.isEmpty()) {
-                JOptionPane.showMessageDialog(FoundDogUI.this, "No lost dogs reported yet.");
-                return;
-            }
-            for (PersonLost person : listPersonLost) {
-                showAllInfo(person);
             }
         }
     }
@@ -327,7 +317,7 @@ public class FoundDogUI extends JFrame {
         }
     }
 
-    // Handles returning to main menu 
+    // Handles returning to main menu
     private class ReturnAction extends AbstractAction {
         // MODIFIES: this
         // EFFECTS: constructs action

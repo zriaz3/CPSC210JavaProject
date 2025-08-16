@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 // Represents a list of all the people who found dogs. 
-public class ListPersonFound {
+public class ListPersonFound extends Matcher {
     private ArrayList<PersonFound> peopleFound;
 
     // EFFECTS: creates an empty list of personFound
@@ -30,33 +30,6 @@ public class ListPersonFound {
     public ArrayList<PersonFound> getListPersonFound() {
         EventLog.getInstance().logEvent(new Event("Looked through all found dogs"));
         return peopleFound;
-    }
-
-    // EFFECTS: returns true if given dog is similar to personFound's dog
-    public Boolean isMatch(Dog dog, PersonFound personF) {
-        int score = 0;
-        Dog lost = dog;
-        Dog found = personF.getDog();
-        if (lost.getName().equalsIgnoreCase(found.getName())) {
-            score++;
-        }
-        if (lost.getAge() == (found.getAge())) {
-            score++;
-        }
-        if (lost.getBreed().equalsIgnoreCase(found.getBreed())) {
-            score++;
-        }
-        if (lost.getFurColor().equalsIgnoreCase(found.getFurColor())) {
-            score++;
-        }
-        if (lost.getSize().equalsIgnoreCase(found.getSize())) {
-            score++;
-        }
-        if (lost.getBuild().equalsIgnoreCase(found.getBuild())) {
-            score++;
-        }
-
-        return score >= 3;
     }
 
     // MODIFIES: this

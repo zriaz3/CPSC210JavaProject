@@ -91,7 +91,8 @@ public class LostDogUI extends JFrame {
         display.add(dogPanel);
     }
 
-    // Reference: https://stackoverflow.com/questions/66502178/how-to-add-spacing-between-jpanel-and-jframes-contentpane
+    // Reference:
+    // https://stackoverflow.com/questions/66502178/how-to-add-spacing-between-jpanel-and-jframes-contentpane
     // MODIFIES: this
     // EFFECTS: displays all info about person and dog
     private void showAllInfo(PersonFound person) {
@@ -106,14 +107,15 @@ public class LostDogUI extends JFrame {
         dogPanel.add(new JLabel("Build: " + dog.getBuild()));
         dogPanel.add(new JLabel("Reported by: " + person.getName()));
         dogPanel.add(new JLabel("Phone number: " + person.getPhoneNumber()));
-        dogPanel.add(new JLabel("Location and Time Found: " + person.getLocation() + " " + person.getTimeFound()));
+        dogPanel.add(new JLabel("Location and Time Found: " + person.getLocation() + " " + person.getTime()));
 
         getPicture(dogPanel, dog);
         dogPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         display.add(dogPanel);
     }
 
-    // Reference: https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
+    // Reference:
+    // https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
     // MODIFIES: dogPanel
     // EFFECTS: adds image to dogPanel if available
     private void getPicture(JPanel dogPanel, Dog dog) {
@@ -129,6 +131,18 @@ public class LostDogUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays all found dogs together
+    private void displayDogs(ArrayList<PersonFound> listPersonFound) {
+        if (listPersonFound.isEmpty()) {
+            JOptionPane.showMessageDialog(LostDogUI.this, "No found dogs reported yet.");
+            return;
+        }
+        for (PersonFound person : listPersonFound) {
+            showAllInfo(person);
+        }
+    }
+
     // Handles reporting of a Lost dog
     private class ReportLostDogAction extends AbstractAction {
         // MODIFIES: this
@@ -137,7 +151,8 @@ public class LostDogUI extends JFrame {
             super("Report Lost Dog");
         }
 
-        // Reference: https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
+        // Reference:
+        // https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
         // MODIFIES: this, currentDog, lostDogs
         // EFFECTS: gets lost dog info, adds to list of lost, displays lost dog
         @Override
@@ -217,18 +232,6 @@ public class LostDogUI extends JFrame {
                 display.repaint();
             }
         }
-
-        // MODIFIES: this
-        // EFFECTS: displays all found dogs together
-        private void displayDogs(ArrayList<PersonFound> listPersonFound) {
-            if (listPersonFound.isEmpty()) {
-                JOptionPane.showMessageDialog(LostDogUI.this, "No found dogs reported yet.");
-                return;
-            }
-            for (PersonFound person : listPersonFound) {
-                showAllInfo(person);
-            }
-        }
     }
 
     // Handles comparing lost dog to found dogs
@@ -250,22 +253,7 @@ public class LostDogUI extends JFrame {
                 displayDogs(matches);
             }
         }
-
-        // MODIFIES: this
-        // EFFECTS: displays all found dogs
-        private void displayDogs(ArrayList<PersonFound> listPersonFound) {
-            display.removeAll();
-            if (listPersonFound.isEmpty()) {
-                JOptionPane.showMessageDialog(LostDogUI.this, "No found dogs reported yet.");
-                return;
-            }
-            for (PersonFound person : listPersonFound) {
-                showAllInfo(person);
-                display.revalidate();
-                display.repaint();
-            }
-        }
-    }   
+    }
 
     // Handles removing a found dog report
     private class RemoveLostDogAction extends AbstractAction {
@@ -324,7 +312,7 @@ public class LostDogUI extends JFrame {
         }
     }
 
-    // Handles returning to main menu 
+    // Handles returning to main menu
     private class ReturnAction extends AbstractAction {
         // MODIFIES: this
         // EFFECTS: constructs action

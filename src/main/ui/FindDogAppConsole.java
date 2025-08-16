@@ -12,7 +12,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 // Dog application 
-public class FindDogApp {
+public class FindDogAppConsole {
     private static final int DOG_INDEX = 0;
     private static final int LOST_INDEX = 1;
     private static final int FOUND_INDEX = 2;
@@ -25,7 +25,7 @@ public class FindDogApp {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the dog application
-    public FindDogApp() {
+    public FindDogAppConsole() {
         input = new Scanner(System.in);
         foundDogs = new ListPersonFound();
         lostDogs = new ListPersonLost();
@@ -87,6 +87,6 @@ public class FindDogApp {
     }
 
     public static void main(String[] args) {
-        new FindDogApp();
+        new FindDogAppConsole();
     }
 }
