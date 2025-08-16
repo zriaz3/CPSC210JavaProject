@@ -246,11 +246,16 @@ public class LostDogUI extends JFrame {
         // EFFECTS: checks if any matches and displays them
         @Override
         public void actionPerformed(ActionEvent e) {
+            
+            display.removeAll();
+
             if (currentDog.getDog() == null) {
                 JOptionPane.showMessageDialog(LostDogUI.this, "No report filed, file a report and try again!");
             } else {
                 ArrayList<PersonFound> matches = foundDogs.searchFoundPeople(currentDog.getDog());
                 displayDogs(matches);
+                display.revalidate();
+                display.repaint();
             }
         }
     }
